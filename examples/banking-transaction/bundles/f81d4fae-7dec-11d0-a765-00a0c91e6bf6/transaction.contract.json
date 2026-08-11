@@ -1,0 +1,718 @@
+{
+  "header": {
+    "$schema": "https://jadeworld.com/jade-platform-core/schemas/jdr-event-contract.json",
+    "schemaVersion": "1.0",
+    "type": "jdr-event-contract",
+    "contentType": "application/json"
+  },
+  "meta": {
+    "id": 2147,
+    "name": "com.bankmodel.events.Transaction@1.0.0",
+    "version": "1.0.0",
+    "generatedAt": "2026-04-29T00:00:00Z",
+    "generator": "manual-example v1.0.0"
+  },
+  "mapping": {
+    "system": {
+      "bindings": {
+        "Jade::Envelope::eventId": {
+          "name": "eventId"
+        },
+        "Jade::Envelope::schemaId": {
+          "name": "schemaId"
+        },
+        "Jade::Envelope::eventType": {
+          "name": "eventType"
+        },
+        "Jade::Envelope::eventTimezoneOffset": {
+          "name": "eventTimezoneOffset"
+        },
+        "Jade::Envelope::eventSequenceNumber": {
+          "name": "eventSequenceNumber"
+        },
+        "Jade::Envelope::contentType": {
+          "name": "contentType"
+        },
+        "Jade::Envelope::transactionId": {
+          "name": "transactionId"
+        },
+        "Jade::Envelope::objectType": {
+          "name": "objectType"
+        }
+      }
+    },
+    "source": {
+      "extent": {
+        "2147": "BankModelSchema::Transaction",
+        "2119": "BankModelSchema::CashTransaction",
+        "2120": "BankModelSchema::TransferTransaction",
+        "2121": "BankModelSchema::CardTransaction"
+      }
+    },
+    "target": {
+      "event": {
+        "name": "com.BankModel.Events.Transaction",
+        "envelope": {
+          "format": "JadeEnvelope",
+          "version": "1.0"
+        }
+      }
+    },
+    "protocolMappings": [],
+    "messageMappings": [
+      {
+        "$debug": "meta: event id",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::eventId"
+          ]
+        },
+        "capture": {
+          "type": "Jade::String",
+          "index": 1
+        },
+        "target": {
+          "path": [
+            "eventId"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: schema id",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::schemaId"
+          ]
+        },
+        "capture": {
+          "type": "Jade::String",
+          "index": 2
+        },
+        "target": {
+          "path": [
+            "schemaId"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: event type",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::eventType"
+          ]
+        },
+        "capture": {
+          "type": "Jade::String",
+          "index": 3
+        },
+        "target": {
+          "path": [
+            "eventType"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: event time",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::eventTime"
+          ]
+        },
+        "capture": {
+          "type": "Jade::TimeStamp",
+          "index": 4
+        },
+        "target": {
+          "path": [
+            "eventTime"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: event timezone offset",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::eventTimezoneOffset"
+          ]
+        },
+        "capture": {
+          "type": "Jade::String",
+          "index": 5
+        },
+        "target": {
+          "path": [
+            "eventTimezoneOffset"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: event sequence number",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::eventSequenceNumber"
+          ]
+        },
+        "capture": {
+          "type": "Jade::Integer64",
+          "index": 6
+        },
+        "target": {
+          "path": [
+            "eventSequenceNumber"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: content type",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::contentType"
+          ]
+        },
+        "capture": {
+          "type": "Jade::String",
+          "index": 7
+        },
+        "target": {
+          "path": [
+            "contentType"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: transaction id",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::transactionId"
+          ]
+        },
+        "capture": {
+          "type": "Jade::Integer64",
+          "index": 8
+        },
+        "target": {
+          "path": [
+            "transactionId"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: object type",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::objectType"
+          ]
+        },
+        "capture": {
+          "type": "Jade::String",
+          "index": 9
+        },
+        "target": {
+          "path": [
+            "objectType"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: payload root",
+        "op": "emitPayloadRoot",
+        "target": {
+          "path": [
+            "object"
+          ],
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      {
+        "$debug": "Transaction.id -> object.id",
+        "op": "emitField",
+        "required": true,
+        "source": {
+          "class": "BankModelSchema::Transaction",
+          "classNum": 2147,
+          "path": [
+            "id"
+          ]
+        },
+        "capture": {
+          "type": "Jade::String[12]",
+          "index": 11
+        },
+        "target": {
+          "path": [
+            "object",
+            "id"
+          ]
+        }
+      },
+      {
+        "$debug": "Transaction.timestamp -> object.timestamp",
+        "op": "emitField",
+        "required": true,
+        "source": {
+          "class": "BankModelSchema::Transaction",
+          "classNum": 2147,
+          "path": [
+            "timestamp"
+          ]
+        },
+        "capture": {
+          "type": "Jade::TimeStamp",
+          "index": 12
+        },
+        "target": {
+          "path": [
+            "object",
+            "timestamp"
+          ]
+        }
+      },
+      {
+        "$debug": "Transaction.type -> object.type",
+        "op": "emitField",
+        "required": false,
+        "source": {
+          "class": "BankModelSchema::Transaction",
+          "classNum": 2147,
+          "path": [
+            "type"
+          ]
+        },
+        "capture": {
+          "type": "Jade::String[10]",
+          "index": 13
+        },
+        "target": {
+          "path": [
+            "object",
+            "type"
+          ]
+        },
+        "policy": {
+          "onNullOrEmpty": ""
+        }
+      },
+      {
+        "$debug": "Transaction.operation -> object.operation",
+        "op": "emitField",
+        "required": false,
+        "source": {
+          "class": "BankModelSchema::Transaction",
+          "classNum": 2147,
+          "path": [
+            "operation"
+          ]
+        },
+        "capture": {
+          "type": "Jade::String[30]",
+          "index": 14
+        },
+        "target": {
+          "path": [
+            "object",
+            "operation"
+          ]
+        },
+        "policy": {
+          "onNullOrEmpty": null
+        }
+      },
+      {
+        "$debug": "Transaction.amount -> object.amount",
+        "op": "emitField",
+        "required": true,
+        "source": {
+          "class": "BankModelSchema::Transaction",
+          "classNum": 2147,
+          "path": [
+            "amount"
+          ]
+        },
+        "capture": {
+          "type": "Jade::Decimal[15,2]",
+          "index": 15
+        },
+        "target": {
+          "path": [
+            "object",
+            "amount"
+          ]
+        }
+      },
+      {
+        "$debug": "Transaction.k_symbol -> object.k_symbol",
+        "op": "emitField",
+        "required": false,
+        "source": {
+          "class": "BankModelSchema::Transaction",
+          "classNum": 2147,
+          "path": [
+            "k_symbol"
+          ]
+        },
+        "capture": {
+          "type": "Jade::String[25]",
+          "index": 16
+        },
+        "target": {
+          "path": [
+            "object",
+            "k_symbol"
+          ]
+        },
+        "policy": {
+          "onNullOrEmpty": {
+            "value": "N/A"
+          }
+        }
+      },
+      {
+        "$debug": "Transaction.otherBank -> object.other_bank",
+        "op": "emitField",
+        "required": false,
+        "source": {
+          "class": "BankModelSchema::Transaction",
+          "classNum": 2147,
+          "path": [
+            "otherBank"
+          ]
+        },
+        "capture": {
+          "type": "Jade::String[30]",
+          "index": 17
+        },
+        "target": {
+          "path": [
+            "object",
+            "other_bank"
+          ]
+        },
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$debug": "RCC: resolve Transaction.myAccount (collectOne) into store slot 1",
+        "op": "collectOne",
+        "required": true,
+        "source": {
+          "class": "BankModelSchema::Transaction",
+          "classNum": 2147,
+          "path": [
+            "myAccount"
+          ]
+        },
+        "capture": {
+          "class": "BankModelSchema::Account",
+          "classNum": 2140,
+          "store": 1,
+          "index": 18
+        },
+        "target": {
+          "path": [
+            "object",
+            "primary_account"
+          ],
+          "schema": {
+            "type": [
+              "object",
+              "null"
+            ]
+          }
+        }
+      },
+      {
+        "$debug": "RCC: myAccount.id -> object.primary_account.id",
+        "op": "emitField",
+        "required": true,
+        "source": {
+          "class": "BankModelSchema::Account",
+          "classNum": 2140,
+          "path": [
+            "id"
+          ],
+          "fetch": 1
+        },
+        "capture": {
+          "type": "Jade::String[12]",
+          "index": 19
+        },
+        "target": {
+          "path": [
+            "object",
+            "primary_account",
+            "id"
+          ]
+        },
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$debug": "RCC: myAccount.name -> object.primary_account.name",
+        "op": "emitField",
+        "required": true,
+        "source": {
+          "class": "BankModelSchema::Account",
+          "classNum": 2140,
+          "path": [
+            "name"
+          ],
+          "fetch": 1
+        },
+        "capture": {
+          "type": "Jade::String[80]",
+          "index": 20
+        },
+        "target": {
+          "path": [
+            "object",
+            "primary_account",
+            "name"
+          ]
+        },
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$debug": "RCC: myAccount.type -> object.primary_account.type",
+        "op": "emitField",
+        "required": true,
+        "source": {
+          "class": "BankModelSchema::Account",
+          "classNum": 2140,
+          "path": [
+            "type"
+          ],
+          "fetch": 1
+        },
+        "capture": {
+          "type": "Jade::String[16]",
+          "index": 21
+        },
+        "target": {
+          "path": [
+            "object",
+            "primary_account",
+            "type"
+          ]
+        },
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$debug": "RCC: myAccount.district_id -> object.primary_account.district_id",
+        "op": "emitField",
+        "required": true,
+        "source": {
+          "class": "BankModelSchema::Account",
+          "classNum": 2140,
+          "path": [
+            "district_id"
+          ],
+          "fetch": 1
+        },
+        "capture": {
+          "type": "Jade::Integer",
+          "index": 22
+        },
+        "target": {
+          "path": [
+            "object",
+            "primary_account",
+            "district_id"
+          ]
+        },
+        "policy": {
+          "onNull": "omit"
+        }
+      },
+      {
+        "$debug": "RCC: resolve Transaction.myOtherAccount (collectOne) into store slot 2",
+        "op": "collectOne",
+        "required": false,
+        "source": {
+          "class": "BankModelSchema::Transaction",
+          "classNum": 2147,
+          "path": [
+            "myOtherAccount"
+          ]
+        },
+        "capture": {
+          "class": "BankModelSchema::Account",
+          "classNum": 2140,
+          "store": 2,
+          "index": 23
+        },
+        "target": {
+          "path": [
+            "object",
+            "counterparty_account"
+          ],
+          "schema": {
+            "type": [
+              "object",
+              "null"
+            ]
+          }
+        }
+      },
+      {
+        "$debug": "RCC: otherAccount.id -> object.counterparty_account.id",
+        "op": "emitField",
+        "required": false,
+        "source": {
+          "class": "BankModelSchema::Account",
+          "classNum": 2140,
+          "path": [
+            "id"
+          ],
+          "fetch": 2
+        },
+        "capture": {
+          "type": "Jade::String[12]",
+          "index": 24
+        },
+        "target": {
+          "path": [
+            "object",
+            "counterparty_account",
+            "id"
+          ]
+        },
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$debug": "RCC: otherAccount.name -> object.counterparty_account.name",
+        "op": "emitField",
+        "required": false,
+        "source": {
+          "class": "BankModelSchema::Account",
+          "classNum": 2140,
+          "path": [
+            "name"
+          ],
+          "fetch": 2
+        },
+        "capture": {
+          "type": "Jade::String[80]",
+          "index": 25
+        },
+        "target": {
+          "path": [
+            "object",
+            "counterparty_account",
+            "name"
+          ]
+        },
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$debug": "RCC: otherAccount.type -> object.counterparty_account.type",
+        "op": "emitField",
+        "required": false,
+        "source": {
+          "class": "BankModelSchema::Account",
+          "classNum": 2140,
+          "path": [
+            "type"
+          ],
+          "fetch": 2
+        },
+        "capture": {
+          "type": "Jade::String[16]",
+          "index": 26
+        },
+        "target": {
+          "path": [
+            "object",
+            "counterparty_account",
+            "type"
+          ]
+        },
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$debug": "RCC: otherAccount.district_id -> object.counterparty_account.district_id",
+        "op": "emitField",
+        "required": false,
+        "source": {
+          "class": "BankModelSchema::Account",
+          "classNum": 2140,
+          "path": [
+            "district_id"
+          ],
+          "fetch": 2
+        },
+        "capture": {
+          "type": "Jade::Integer",
+          "index": 27
+        },
+        "target": {
+          "path": [
+            "object",
+            "counterparty_account",
+            "district_id"
+          ]
+        },
+        "policy": {
+          "onNull": "omit"
+        }
+      },
+      {
+        "$debug": "Transaction.currentBalance() -> object.current_balance",
+        "op": "emitField",
+        "required": false,
+        "source": {
+          "class": "BankModelSchema::Transaction",
+          "classNum": 2147,
+          "path": [
+            "currentBalance()"
+          ]
+        },
+        "capture": {
+          "type": "Jade::Decimal[15,2]",
+          "index": 28
+        },
+        "target": {
+          "path": [
+            "object",
+            "current_balance"
+          ]
+        },
+        "policy": {
+          "onError": "omit",
+          "onNullOrEmpty": { "value": 0.0 }
+        }
+      }
+    ]
+  }
+}

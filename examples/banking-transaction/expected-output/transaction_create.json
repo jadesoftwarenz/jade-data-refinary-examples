@@ -1,0 +1,33 @@
+{
+    "eventId": "07b366bc-2864-ee11-9362-005056a99710.2514.1.1",
+    "schemaId": "2514.0001",
+    "eventType": "JadeSoftware.ObjectStorage.ObjectCreated",
+    "eventTime": "2024-04-29T08:55:00Z",
+    "contentType": "application/json",
+    "transactionId": 11095,
+    "objectType": "BankModelSchema::Transaction",
+    "object": {
+        "oid": "2514.1",
+        "instanceId": 1,
+        "edition": 1,
+        "account_id": "A00002378",
+        "amount": 700.00,
+        "id": "T00695247",
+        "k_symbol": "",
+        "operation": "Credit in Cash",
+        "otherAccount": "",
+        "otherBank": "",
+        "timestamp": "2013-01-01T11:02:40Z",
+        "type": "Credit",
+        "myAccount": {
+            "objectType": "BankModelSchema::Account",
+            "instanceId": 4,
+            "oid": "2450.4"
+        },
+        "myBank": {
+            "objectType": "BankModelSchema::Bank",
+            "instanceId": 1,
+            "oid": "2435.1"
+        }
+    }
+}

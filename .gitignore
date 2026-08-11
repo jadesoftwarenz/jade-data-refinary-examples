@@ -1,0 +1,36 @@
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs and temp files
+*.log
+*.tmp
+*.temp
+
+# Build and package outputs
+bin/
+out/
+dist/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Node package cache
+node_modules/
+
+# Archive and backup artifacts
+*.bak
+*.old
+*.orig
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example

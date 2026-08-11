@@ -1,0 +1,444 @@
+{
+  "header": {
+    "$schema": "https://jadeworld.com/jade-platform-core/schemas/jdr-event-contract.json",
+    "schemaVersion": "1.0",
+    "type": "jdr-event-contract",
+    "contentType": "application/json"
+  },
+  "meta": {
+    "id": 2143,
+    "name": "com.bankmodel.events.District@1.0.0",
+    "version": "1.0.0",
+    "generatedAt": "2026-07-09T00:00:00Z",
+    "generator": "manual-example v1.0.0"
+  },
+  "mapping": {
+    "system": {
+      "bindings": {
+        "Jade::Envelope::eventId": {
+          "name": "eventId"
+        },
+        "Jade::Envelope::schemaId": {
+          "name": "schemaId"
+        },
+        "Jade::Envelope::eventType": {
+          "name": "eventType"
+        },
+        "Jade::Envelope::eventTimezoneOffset": {
+          "name": "eventTimezoneOffset"
+        },
+        "Jade::Envelope::eventSequenceNumber": {
+          "name": "eventSequenceNumber"
+        },
+        "Jade::Envelope::contentType": {
+          "name": "contentType"
+        },
+        "Jade::Envelope::transactionId": {
+          "name": "transactionId"
+        },
+        "Jade::Envelope::objectType": {
+          "name": "objectType"
+        }
+      }
+    },
+    "source": {
+      "extent": {
+        "2143": "BankModelSchema::District"
+      }
+    },
+    "target": {
+      "event": {
+        "name": "com.BankModel.Events.District",
+        "envelope": {
+          "format": "JadeEnvelope",
+          "version": "1.0"
+        }
+      }
+    },
+    "protocolMappings": [],
+    "messageMappings": [
+      {
+        "$debug": "meta: event id",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::eventId"
+          ]
+        },
+        "capture": {
+          "index": 1,
+          "type": "Jade::String"
+        },
+        "target": {
+          "path": [
+            "eventId"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: schema id",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::schemaId"
+          ]
+        },
+        "capture": {
+          "index": 2,
+          "type": "Jade::String"
+        },
+        "target": {
+          "path": [
+            "schemaId"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: event type",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::eventType"
+          ]
+        },
+        "capture": {
+          "index": 3,
+          "type": "Jade::String"
+        },
+        "target": {
+          "path": [
+            "eventType"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: event time",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::eventTime"
+          ]
+        },
+        "capture": {
+          "index": 4,
+          "type": "Jade::TimeStamp"
+        },
+        "target": {
+          "path": [
+            "eventTime"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: event timezone offset",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::eventTimezoneOffset"
+          ]
+        },
+        "capture": {
+          "index": 5,
+          "type": "Jade::String"
+        },
+        "target": {
+          "path": [
+            "eventTimezoneOffset"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: event sequence number",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::eventSequenceNumber"
+          ]
+        },
+        "capture": {
+          "index": 6,
+          "type": "Jade::Integer64"
+        },
+        "target": {
+          "path": [
+            "eventSequenceNumber"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: content type",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::contentType"
+          ]
+        },
+        "capture": {
+          "index": 7,
+          "type": "Jade::String"
+        },
+        "target": {
+          "path": [
+            "contentType"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: transaction id",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::transactionId"
+          ]
+        },
+        "capture": {
+          "index": 8,
+          "type": "Jade::Integer64"
+        },
+        "target": {
+          "path": [
+            "transactionId"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: object type",
+        "op": "emitMetaField",
+        "required": true,
+        "source": {
+          "path": [
+            "$Jade::Envelope::objectType"
+          ]
+        },
+        "capture": {
+          "index": 9,
+          "type": "Jade::String"
+        },
+        "target": {
+          "path": [
+            "objectType"
+          ]
+        }
+      },
+      {
+        "$debug": "meta: payload root",
+        "op": "emitPayloadRoot",
+        "target": {
+          "path": [
+            "object"
+          ],
+          "schema": { "type": "object" }
+        }
+      },
+      {
+        "$debug": "District.id -> object.id",
+        "op": "emitField",
+        "required": true,
+        "source": {
+          "class": "BankModelSchema::District",
+          "classNum": 2143,
+          "path": [
+            "id"
+          ]
+        },
+        "capture": {
+          "index": 11,
+          "type": "Jade::Integer"
+        },
+        "target": {
+          "path": [
+            "object",
+            "id"
+          ]
+        }
+      },
+      {
+        "$debug": "District.city -> object.city",
+        "op": "emitField",
+        "required": true,
+        "source": {
+          "class": "BankModelSchema::District",
+          "classNum": 2143,
+          "path": [
+            "city"
+          ]
+        },
+        "capture": {
+          "index": 12,
+          "type": "Jade::String[30]"
+        },
+        "target": {
+          "path": [
+            "object",
+            "city"
+          ]
+        }
+      },
+      {
+        "$debug": "District.stateName -> object.state_name",
+        "op": "emitField",
+        "required": false,
+        "source": {
+          "class": "BankModelSchema::District",
+          "classNum": 2143,
+          "path": [
+            "stateName"
+          ]
+        },
+        "capture": {
+          "index": 13,
+          "type": "Jade::String[30]"
+        },
+        "target": {
+          "path": [
+            "object",
+            "state_name"
+          ]
+        },
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$debug": "District.stateAbbrev -> object.state_abbrev",
+        "op": "emitField",
+        "required": false,
+        "source": {
+          "class": "BankModelSchema::District",
+          "classNum": 2143,
+          "path": [
+            "stateAbbrev"
+          ]
+        },
+        "capture": {
+          "index": 14,
+          "type": "Jade::String[3]"
+        },
+        "target": {
+          "path": [
+            "object",
+            "state_abbrev"
+          ]
+        },
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$debug": "District.region -> object.region",
+        "op": "emitField",
+        "required": false,
+        "source": {
+          "class": "BankModelSchema::District",
+          "classNum": 2143,
+          "path": [
+            "region"
+          ]
+        },
+        "capture": {
+          "index": 15,
+          "type": "Jade::String[12]"
+        },
+        "target": {
+          "path": [
+            "object",
+            "region"
+          ]
+        },
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$debug": "District.division -> object.division",
+        "op": "emitField",
+        "required": false,
+        "source": {
+          "class": "BankModelSchema::District",
+          "classNum": 2143,
+          "path": [
+            "division"
+          ]
+        },
+        "capture": {
+          "index": 16,
+          "type": "Jade::String[20]"
+        },
+        "target": {
+          "path": [
+            "object",
+            "division"
+          ]
+        },
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$debug": "RCC: resolve District.myBank (collectOne) into store slot 1",
+        "op": "collectOne",
+        "required": true,
+        "source": {
+          "class": "BankModelSchema::District",
+          "classNum": 2143,
+          "path": [
+            "myBank"
+          ]
+        },
+        "capture": {
+          "class": "BankModelSchema::Bank",
+          "classNum": 2138,
+          "store": 1,
+          "index": 17
+        },
+        "target": {
+          "path": [
+            "object",
+            "bank"
+          ],
+          "schema": {
+            "type": [
+              "object",
+              "null"
+            ]
+          }
+        }
+      },
+      {
+        "$debug": "RCC: myBank.name -> object.bank.name",
+        "op": "emitField",
+        "required": true,
+        "source": {
+          "class": "BankModelSchema::Bank",
+          "classNum": 2138,
+          "path": [
+            "name"
+          ],
+          "fetch": 1
+        },
+        "capture": {
+          "index": 18,
+          "type": "Jade::String[100]"
+        },
+        "target": {
+          "path": [
+            "object",
+            "bank",
+            "name"
+          ]
+        },
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      }
+    ]
+  }
+}

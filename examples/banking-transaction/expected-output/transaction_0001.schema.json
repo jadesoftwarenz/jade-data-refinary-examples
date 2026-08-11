@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "eventId": {
+      "type": "string"
+    },
+    "schemaId": {
+      "type": "string"
+    },
+    "eventType": {
+      "type": "string"
+    },
+    "eventTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "contentType": {
+      "type": "string"
+    },
+    "transactionId": {
+      "type": "integer"
+    },
+    "objectType": {
+      "type": "string"
+    },
+    "object": {
+      "$ref": "#/definitions/Object"
+    }
+  },
+  "definitions": {
+    "Object": {
+      "type": "object",
+      "properties": {
+        "oid": {
+          "type": "string"
+        },
+        "instanceId": {
+          "type": "integer"
+        },
+        "edition": {
+          "type": "integer"
+        },
+        "account_id": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "id": {
+          "type": "string"
+        },
+        "k_symbol": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "otherAccount": {
+          "type": "string"
+        },
+        "otherBank": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "type": {
+          "type": "string"
+        },
+        "myAccount": {
+          "$ref": "#/definitions/ObjectReference"
+        },
+        "myBank": {
+          "$ref": "#/definitions/ObjectReference"
+        }
+      }
+    },
+    "ObjectReference": {
+      "type": "object",
+      "properties": {
+        "objectType": {
+          "type": "string"
+        },
+        "instanceId": {
+          "type": "integer"
+        },
+        "oid": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
