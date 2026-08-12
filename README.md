@@ -73,13 +73,6 @@ jade-data-refinery-examples/
 |       +-- bundles/
 |       |   +-- f81d4fae-7dec-11d0-a765-00a0c91e6bf6/
 |       |       +-- f81d4fae-7dec-11d0-a765-00a0c91e6bf6.manifest.json
-|       |       +-- account.contract.json
-|       |       +-- bank.contract.json
-|       |       +-- customer.contract.json
-|       |       +-- district.contract.json
-|       |       +-- loan.contract.json
-|       |       +-- order.contract.json
-|       |       +-- transaction.contract.json
 |       |
 |       +-- expected-output/
 |           +-- transaction_create.json
