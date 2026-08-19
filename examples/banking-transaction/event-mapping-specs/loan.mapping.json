@@ -1,0 +1,110 @@
+{
+  "header": {
+    "$schema": "https://jadeworld.com/jade-platform-core/schemas/jdr-event-mapping.json",
+    "schemaVersion": "1.0",
+    "type": "jdr-event-mapping",
+    "contentType": "application/json"
+  },
+  "meta": {
+    "name": "com.bankmodel.events.Loan@1.0.0",
+    "version": "1.0.0",
+    "versionTag": "Release-1.0.0",
+    "modifiedAt": "2026-06-18T00:00:00Z"
+  },
+
+  "mapping": {
+
+    "source": {
+      "extent": {
+        "name": "BankModelSchema::Loan"
+      }
+    },
+    "target": {
+      "event": {
+        "name": "com.BankModel.Events.Loan",
+        "envelope": {
+          "format": "JadeEnvelope",
+          "version": "1.0"
+        }
+      }
+    },
+
+    "templates": [
+      {
+        "$comment": "RCC: Loan.myAccount -> object.account",
+        "name": "com.BankModel.Events.Templates.Loan.Account",
+        "extent": "BankModelSchema::Account",
+        "messageMappings": [
+          {
+            "required": true,
+            "source": "id",
+            "policy": {
+              "onNullOrEmpty": "omit"
+            }
+          },
+          {
+            "required": false,
+            "source": "name",
+            "policy": {
+              "onNullOrEmpty": "omit"
+            }
+          }
+        ]
+      }
+    ],
+
+    "messageMappings": [
+      {
+        "$comment": "Loan.id -> object.id",
+        "required": true,
+        "source": "id"
+      },
+      {
+        "$comment": "Loan.amount -> object.amount",
+        "required": true,
+        "source": "amount"
+      },
+      {
+        "$comment": "Loan.date -> object.date",
+        "required": false,
+        "source": "date",
+        "policy": {
+          "onNull": "omit"
+        }
+      },
+      {
+        "$comment": "Loan.duration -> object.duration",
+        "required": true,
+        "source": "duration"
+      },
+      {
+        "$comment": "Loan.payments -> object.payments",
+        "required": true,
+        "source": "payments"
+      },
+      {
+        "$comment": "Loan.purpose -> object.purpose",
+        "required": false,
+        "source": "purpose",
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$comment": "Loan.status -> object.status",
+        "required": false,
+        "source": "status",
+        "policy": {
+          "onNull": "omit"
+        }
+      },
+      {
+        "$comment": "RCC: resolve Loan.myAccount into object.account",
+        "required": true,
+        "source": "myAccount",
+        "target": "account",
+        "template": "com.BankModel.Events.Templates.Loan.Account"
+      }
+    ]
+  }
+}

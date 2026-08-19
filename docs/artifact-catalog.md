@@ -2,18 +2,17 @@
 
 This catalog lists all imported artefacts for the initial `jade-data-refinery-example` build.
 
-## Bundle
+## Event Mapping Specs (EMS)
 
-Destination: `examples/banking-transaction/bundles/f81d4fae-7dec-11d0-a765-00a0c91e6bf6`
+Destination: `examples/banking-transaction/event-mapping-specs`
 
-- `account.contract.json`
-- `bank.contract.json`
-- `customer.contract.json`
-- `district.contract.json`
-- `loan.contract.json`
-- `order.contract.json`
-- `transaction.contract.json`
-- `f81d4fae-7dec-11d0-a765-00a0c91e6bf6.manifest.json`
+- `account.mapping.json`
+- `bank.mapping.json`
+- `customer.mapping.json`
+- `district.mapping.json`
+- `loan.mapping.json`
+- `order.mapping.json`
+- `transaction.mapping.json`
 
 ## Schema Inputs
 
@@ -50,4 +49,4 @@ Destination: `examples/banking-transaction/expected-output`
 
 ## Planned Evolution
 
-Bundle/contracts are temporary V1 bootstrap artefacts and will be replaced by EMS-authored and compiled outputs when the EMS workflow for this example is available.
+The EMS files are the maintained source for this example. Compile them locally with `JdrBundleSmith` to produce the mapping bundle used for activation; compiled bundle/contract artefacts are not checked in to this repository.

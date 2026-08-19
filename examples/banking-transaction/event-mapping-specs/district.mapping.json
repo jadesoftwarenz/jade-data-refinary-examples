@@ -1,0 +1,103 @@
+{
+  "header": {
+    "$schema": "https://jadeworld.com/jade-platform-core/schemas/jdr-event-mapping.json",
+    "schemaVersion": "1.0",
+    "type": "jdr-event-mapping",
+    "contentType": "application/json"
+  },
+  "meta": {
+    "name": "com.bankmodel.events.District@1.0.0",
+    "version": "1.0.0",
+    "versionTag": "Release-1.0.0",
+    "modifiedAt": "2026-07-09T00:00:00Z"
+  },
+
+  "mapping": {
+
+    "source": {
+      "extent": {
+        "name": "BankModelSchema::District"
+      }
+    },
+    "target": {
+      "event": {
+        "name": "com.BankModel.Events.District",
+        "envelope": {
+          "format": "JadeEnvelope",
+          "version": "1.0"
+        }
+      }
+    },
+
+    "templates": [
+      {
+        "$comment": "RCC: District.myBank -> object.bank",
+        "name": "com.BankModel.Events.Templates.District.Bank",
+        "extent": "BankModelSchema::Bank",
+        "messageMappings": [
+          {
+            "required": true,
+            "source": "name",
+            "policy": {
+              "onNullOrEmpty": "omit"
+            }
+          }
+        ]
+      }
+    ],
+
+    "messageMappings": [
+      {
+        "$comment": "District.id -> object.id",
+        "required": true,
+        "source": "id"
+      },
+      {
+        "$comment": "District.city -> object.city",
+        "required": true,
+        "source": "city"
+      },
+      {
+        "$comment": "District.stateName -> object.state_name",
+        "required": false,
+        "source": "stateName",
+        "target": "state_name",
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$comment": "District.stateAbbrev -> object.state_abbrev",
+        "required": false,
+        "source": "stateAbbrev",
+        "target": "state_abbrev",
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$comment": "District.region -> object.region",
+        "required": false,
+        "source": "region",
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$comment": "District.division -> object.division",
+        "required": false,
+        "source": "division",
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$comment": "RCC: resolve District.myBank into object.bank",
+        "required": true,
+        "source": "myBank",
+        "target": "bank",
+        "template": "com.BankModel.Events.Templates.District.Bank"
+      }
+    ]
+  }
+}

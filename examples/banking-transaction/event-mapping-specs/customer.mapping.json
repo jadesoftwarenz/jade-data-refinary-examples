@@ -1,0 +1,133 @@
+{
+  "header": {
+    "$schema": "https://jadeworld.com/jade-platform-core/schemas/jdr-event-mapping.json",
+    "schemaVersion": "1.0",
+    "type": "jdr-event-mapping",
+    "contentType": "application/json"
+  },
+  "meta": {
+    "name": "com.bankmodel.events.Customer@1.0.0",
+    "version": "1.0.0",
+    "versionTag": "Release-1.0.0",
+    "modifiedAt": "2026-04-29T00:00:00Z"
+  },
+
+  "mapping": {
+
+    "source": {
+      "extent": {
+        "name": "BankModelSchema::Customer"
+      }
+    },
+    "target": {
+      "event": {
+        "name": "com.BankModel.Events.Customer",
+        "envelope": {
+          "format": "JadeEnvelope",
+          "version": "1.0"
+        }
+      }
+    },
+
+    "messageMappings": [
+      {
+        "$comment": "Customer.id -> object.id",
+        "required": true,
+        "source": "id"
+      },
+      {
+        "$comment": "Customer.active -> object.active",
+        "required": true,
+        "source": "active"
+      },
+      {
+        "$comment": "Customer.firstName -> object.first_name",
+        "required": true,
+        "source": "firstName",
+        "target": "first_name"
+      },
+      {
+        "$comment": "Customer.lastName -> object.last_name",
+        "required": true,
+        "source": "lastName",
+        "target": "last_name"
+      },
+      {
+        "$comment": "Customer.middleName -> object.middle_name",
+        "required": false,
+        "source": "middleName",
+        "target": "middle_name",
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$comment": "Customer.gender -> object.gender",
+        "required": false,
+        "source": "gender"
+      },
+      {
+        "$comment": "Customer.dateOfBirth -> object.date_of_birth",
+        "required": false,
+        "source": "dateOfBirth",
+        "target": "date_of_birth",
+        "policy": {
+          "onNull": "omit"
+        }
+      },
+      {
+        "$comment": "Customer.ssn -> object.ssn",
+        "required": false,
+        "source": "ssn"
+      },
+      {
+        "$comment": "Customer.email -> object.email",
+        "required": false,
+        "source": "email"
+      },
+      {
+        "$comment": "Customer.phoneNumber -> object.phone_number",
+        "required": false,
+        "source": "phoneNumber",
+        "target": "phone_number"
+      },
+      {
+        "$comment": "Customer.address_1 -> object.address_1",
+        "required": false,
+        "source": "address_1",
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$comment": "Customer.address_2 -> object.address_2",
+        "required": false,
+        "source": "address_2",
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$comment": "Customer.city -> object.city",
+        "required": false,
+        "source": "city"
+      },
+      {
+        "$comment": "Customer.state -> object.state",
+        "required": false,
+        "source": "state"
+      },
+      {
+        "$comment": "Customer.zipCode -> object.zip_code",
+        "required": false,
+        "source": "zipCode",
+        "target": "zip_code"
+      },
+      {
+        "$comment": "Customer.district_id -> object.district_id",
+        "required": true,
+        "source": "district_id"
+      }
+    ]
+  }
+}

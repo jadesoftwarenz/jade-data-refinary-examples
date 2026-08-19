@@ -1,0 +1,40 @@
+{
+  "header": {
+    "$schema": "https://jadeworld.com/jade-platform-core/schemas/jdr-event-mapping.json",
+    "schemaVersion": "1.0",
+    "type": "jdr-event-mapping",
+    "contentType": "application/json"
+  },
+  "meta": {
+    "name": "com.bankmodel.events.Bank@1.0.0",
+    "version": "1.0.0",
+    "versionTag": "Release-1.0.0",
+    "modifiedAt": "2026-07-09T00:00:00Z"
+  },
+
+  "mapping": {
+
+    "source": {
+      "extent": {
+        "name": "BankModelSchema::Bank"
+      }
+    },
+    "target": {
+      "event": {
+        "name": "com.BankModel.Events.Bank",
+        "envelope": {
+          "format": "JadeEnvelope",
+          "version": "1.0"
+        }
+      }
+    },
+
+    "messageMappings": [
+      {
+        "$comment": "Bank.name -> object.name",
+        "required": true,
+        "source": "name"
+      }
+    ]
+  }
+}

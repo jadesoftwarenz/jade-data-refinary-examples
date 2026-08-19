@@ -1,0 +1,97 @@
+{
+  "header": {
+    "$schema": "https://jadeworld.com/jade-platform-core/schemas/jdr-event-mapping.json",
+    "schemaVersion": "1.0",
+    "type": "jdr-event-mapping",
+    "contentType": "application/json"
+  },
+  "meta": {
+    "name": "com.bankmodel.events.Order@1.0.0",
+    "version": "1.0.0",
+    "versionTag": "Release-1.0.0",
+    "modifiedAt": "2026-06-18T00:00:00Z"
+  },
+
+  "mapping": {
+
+    "source": {
+      "extent": {
+        "name": "BankModelSchema::Order"
+      }
+    },
+    "target": {
+      "event": {
+        "name": "com.BankModel.Events.Order",
+        "envelope": {
+          "format": "JadeEnvelope",
+          "version": "1.0"
+        }
+      }
+    },
+
+    "templates": [
+      {
+        "$comment": "RCC: Order.myAccount -> object.account",
+        "name": "com.BankModel.Events.Templates.Order.Account",
+        "extent": "BankModelSchema::Account",
+        "messageMappings": [
+          {
+            "required": true,
+            "source": "id",
+            "policy": {
+              "onNullOrEmpty": "omit"
+            }
+          },
+          {
+            "required": false,
+            "source": "name",
+            "policy": {
+              "onNullOrEmpty": "omit"
+            }
+          }
+        ]
+      }
+    ],
+
+    "messageMappings": [
+      {
+        "$comment": "Order.id -> object.id",
+        "required": true,
+        "source": "id"
+      },
+      {
+        "$comment": "Order.amount -> object.amount",
+        "required": true,
+        "source": "amount"
+      },
+      {
+        "$comment": "Order.bank_to -> object.bank_to",
+        "required": false,
+        "source": "bank_to",
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$comment": "Order.account_to -> object.account_to",
+        "required": true,
+        "source": "account_to"
+      },
+      {
+        "$comment": "Order.k_symbol -> object.k_symbol",
+        "required": false,
+        "source": "k_symbol",
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$comment": "RCC: resolve Order.myAccount into object.account",
+        "required": true,
+        "source": "myAccount",
+        "target": "account",
+        "template": "com.BankModel.Events.Templates.Order.Account"
+      }
+    ]
+  }
+}

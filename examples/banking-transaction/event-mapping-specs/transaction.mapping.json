@@ -1,0 +1,146 @@
+{
+  "header": {
+    "$schema": "https://jadeworld.com/jade-platform-core/schemas/jdr-event-mapping.json",
+    "schemaVersion": "1.0",
+    "type": "jdr-event-mapping",
+    "contentType": "application/json"
+  },
+  "meta": {
+    "name": "com.bankmodel.events.Transaction@1.0.0",
+    "version": "1.0.0",
+    "versionTag": "Release-1.0.0",
+    "modifiedAt": "2026-04-29T00:00:00Z"
+  },
+
+  "mapping": {
+
+    "source": {
+      "extent": {
+        "$comment": "Recursive extent, includes CashTransaction, TransferTransaction and CardTransaction",
+        "name": "BankModelSchema::Transaction"
+      }
+    },
+    "target": {
+      "event": {
+        "name": "com.BankModel.Events.Transaction",
+        "envelope": {
+          "format": "JadeEnvelope",
+          "version": "1.0"
+        }
+      }
+    },
+
+    "templates": [
+      {
+        "$comment": "RCC: Transaction.myAccount/myOtherAccount -> object.primary_account/object.counterparty_account",
+        "name": "com.BankModel.Events.Templates.Transaction.Account",
+        "extent": "BankModelSchema::Account",
+        "messageMappings": [
+          {
+            "required": false,
+            "source": "id",
+            "policy": {
+              "onNullOrEmpty": "omit"
+            }
+          },
+          {
+            "required": false,
+            "source": "name",
+            "policy": {
+              "onNullOrEmpty": "omit"
+            }
+          },
+          {
+            "required": false,
+            "source": "type",
+            "policy": {
+              "onNullOrEmpty": "omit"
+            }
+          },
+          {
+            "required": false,
+            "source": "district_id",
+            "policy": {
+              "onNull": "omit"
+            }
+          }
+        ]
+      }
+    ],
+
+    "messageMappings": [
+      {
+        "$comment": "Transaction.id -> object.id",
+        "required": true,
+        "source": "id"
+      },
+      {
+        "$comment": "Transaction.timestamp -> object.timestamp",
+        "required": true,
+        "source": "timestamp"
+      },
+      {
+        "$comment": "Transaction.type -> object.type",
+        "required": false,
+        "source": "type",
+        "policy": {
+          "onNullOrEmpty": ""
+        }
+      },
+      {
+        "$comment": "Transaction.operation -> object.operation",
+        "required": false,
+        "source": "operation",
+        "policy": {
+          "onNullOrEmpty": null
+        }
+      },
+      {
+        "$comment": "Transaction.amount -> object.amount",
+        "required": true,
+        "source": "amount"
+      },
+      {
+        "$comment": "Transaction.k_symbol -> object.k_symbol",
+        "required": false,
+        "source": "k_symbol",
+        "policy": {
+          "onNullOrEmpty": { "value": "N/A" }
+        }
+      },
+      {
+        "$comment": "Transaction.otherBank -> object.other_bank",
+        "required": false,
+        "source": "otherBank",
+        "target": "other_bank",
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$comment": "RCC: resolve Transaction.myAccount into object.primary_account",
+        "required": true,
+        "source": "myAccount",
+        "target": "primary_account",
+        "template": "com.BankModel.Events.Templates.Transaction.Account"
+      },
+      {
+        "$comment": "RCC: resolve Transaction.myOtherAccount into object.counterparty_account",
+        "required": false,
+        "source": "myOtherAccount",
+        "target": "counterparty_account",
+        "template": "com.BankModel.Events.Templates.Transaction.Account"
+      },
+      {
+        "$comment": "Transaction.currentBalance() -> object.current_balance (unbounded Decimal, captured as a string)",
+        "required": false,
+        "source": "currentBalance()",
+        "target": "current_balance",
+        "policy": {
+          "onError": "omit",
+          "onNullOrEmpty": { "value": "0.00" }
+        }
+      }
+    ]
+  }
+}

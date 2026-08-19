@@ -33,13 +33,13 @@ See the [JDR Getting Started Guide](https://jadesoftware.atlassian.net/wiki/spac
 
 3. Load the banking example schema and data from this repository.
 
-4. Use the banking transaction bundle artefacts under:
+4. Use the banking transaction Event Mapping Specs (EMS) under:
 
    ```text
-   examples/banking-transaction/bundles/f81d4fae-7dec-11d0-a765-00a0c91e6bf6/
+   examples/banking-transaction/event-mapping-specs/
    ```
 
-5. Deploy the example mapping bundle to the `BundleStorageDirectory` configured for your Refinery Secondary.
+5. Compile the EMS files with `JdrBundleSmith` into a mapping bundle and deploy it to the `BundleStorageDirectory` configured for your Refinery Secondary.
 
 6. Activate the bundle using the JDR bundle activation procedure.
 
@@ -70,9 +70,14 @@ jade-data-refinery-examples/
 +-- examples/
 |   +-- banking-transaction/
 |       |
-|       +-- bundles/
-|       |   +-- f81d4fae-7dec-11d0-a765-00a0c91e6bf6/
-|       |       +-- f81d4fae-7dec-11d0-a765-00a0c91e6bf6.manifest.json
+|       +-- event-mapping-specs/
+|       |   +-- account.mapping.json
+|       |   +-- bank.mapping.json
+|       |   +-- customer.mapping.json
+|       |   +-- district.mapping.json
+|       |   +-- loan.mapping.json
+|       |   +-- order.mapping.json
+|       |   +-- transaction.mapping.json
 |       |
 |       +-- expected-output/
 |           +-- transaction_create.json
@@ -108,13 +113,10 @@ The current scope is intentionally focused:
 * Test-only bundle variants are not included.
 * Expected output is representative rather than byte-for-byte deterministic.
 
-Some checked-in bundle and contract artefacts are supplied as bootstrap reference assets while the complete EMS authoring and compilation workflow is finalised for the example.
-
 Current V1 state:
 
-* The repository includes bundle and contract artefacts used by the tutorial scenario.
-* The dedicated EMS source path is not yet included in this repository.
-* When EMS authoring assets are added, the EMS will become the maintained source and generated EMC files should remain generated artefacts.
+* The repository includes hand-authored EMS files used by the tutorial scenario. These are the maintained source.
+* Compiled bundle and contract artefacts are not checked in; compile the EMS files locally with `JdrBundleSmith` to produce the bundle used for activation.
 
 ## Compatibility
 
