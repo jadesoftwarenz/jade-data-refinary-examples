@@ -1,13 +1,11 @@
 ﻿jadeVersionNumber "99.0.00";
 schemaDefinition
-RootSchema subschemaOf null partialDefinition, systemSchema, patchVersioningEnabled = true;
-	setModifiedTimeStamp "cnwgc3" "99.0.00" 2021:10:15:16:54:02.384;
+RootSchema subschemaOf null partialDefinition, systemSchema;
 typeDefinitions
 	JadeScript
 	(
 	jadeMethodDefinitions
-		causeActivation(bundleIdAndHash: String) systemOnly, number = 26;
-		setModifiedTimeStamp "cnwbn1" "99.0.00" 2026:06:08:10:21:55.223;
+		causeActivation(bundleId: String) systemOnly;
 
 	)
 typeSources
@@ -15,13 +13,13 @@ typeSources
 	jadeMethodSources
 causeActivation
 {
-causeActivation(bundleIdAndHash : String) systemOnly;
-// bundleIdAndHash expected format = "<bundleId>|<bundleHash>"
+causeActivation(bundleId : String) systemOnly;
+// bundleId expected format = "<xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx>
 vars
 	dbAdmin : JadeDatabaseAdmin;
 begin
 	create dbAdmin transient;
-	dbAdmin.sdsAuditGenericCB(JDRCB_BundleActivation, bundleIdAndHash);
+	dbAdmin.__previewJdrActivation(bundleId);
 epilog
 delete dbAdmin;
 end;

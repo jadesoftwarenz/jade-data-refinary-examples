@@ -11,9 +11,7 @@
     "versionTag": "Release-1.0.0",
     "modifiedAt": "2026-04-29T00:00:00Z"
   },
-
   "mapping": {
-
     "source": {
       "extent": {
         "name": "BankModelSchema::Customer"
@@ -28,7 +26,6 @@
         }
       }
     },
-
     "messageMappings": [
       {
         "$comment": "Customer.id -> object.id",
@@ -127,6 +124,18 @@
         "$comment": "Customer.district_id -> object.district_id",
         "required": true,
         "source": "district_id"
+      },
+      {
+        "$comment": "Customer.fullName() -> object.full_name",
+        "required": false,
+        "source": "fullName()",
+        "target": "full_name",
+        "policy": {
+          "onError": "omit",
+          "onNullOrEmpty": {
+            "value": "Jane Doe"
+          }
+        }
       }
     ]
   }

@@ -37,10 +37,7 @@
         "messageMappings": [
           {
             "required": true,
-            "source": "name",
-            "policy": {
-              "onNullOrEmpty": "omit"
-            }
+            "source": "name"
           }
         ]
       }

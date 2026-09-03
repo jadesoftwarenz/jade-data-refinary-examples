@@ -18,7 +18,7 @@ typeHeaders
 	Institute subclassOf BankEntity highestOrdinal = 1, number = 2144;
 	Loan subclassOf BankEntity highestOrdinal = 11, dynamicPropertyCluster = "BankEntityCluster", number = 2145;
 	Order subclassOf BankEntity highestOrdinal = 6, number = 2146;
-	Transaction subclassOf BankEntity highestOrdinal = 12, number = 2147;
+	Transaction subclassOf BankEntity highestOrdinal = 13, number = 2147;
 	CardTransaction subclassOf Transaction highestOrdinal = 3, number = 2121;
 	CashTransaction subclassOf Transaction highestOrdinal = 2, number = 2119;
 	TransferTransaction subclassOf Transaction highestOrdinal = 3, number = 2120;
@@ -249,6 +249,7 @@ typeDefinitions
 			date: Date; 
 			parent: Bank; 
 			district: District) updating, number = 1001;
+		fullName(): String refinery, number = 1002;
 	)
 	District completeDefinition
 	(
@@ -335,6 +336,7 @@ typeDefinitions
 		k_symbol:                      String[26] number = 4, ordinal = 4;
 		operation:                     String[31] number = 5, ordinal = 5;
 		otherBank:                     String[31] number = 7, ordinal = 7;
+		smoketestFlag:                 Boolean number = 1, ordinal = 13;
 		timestamp:                     TimeStamp number = 8, ordinal = 8;
 		type:                          String[11] number = 9, ordinal = 9;
 	referenceDefinitions
@@ -1044,6 +1046,14 @@ begin
 	self.myBank := parent;
 end;
 }
+fullName
+{
+fullName() : String refinery;
+begin
+	return firstName & ' ' & middleName & ' ' & lastName;
+end;
+
+}
 	)
 	District (
 	jadeMethodSources
@@ -1441,7 +1451,7 @@ begin
 	self.loadRecords(ClientFileName, DataLoader::loadCustomer, 200, maxRecords);
 	self.loadRecords(LoanFileName, DataLoader::loadLoan, 500, maxRecords);
 	self.loadRecords(OrderFileName, DataLoader::loadOrder, 2000, maxRecords);
-	self.loadRecords(TransactionFileName, DataLoader::loadTransaction, 50000, maxRecords);
+	self.loadRecords(TransactionFileName, DataLoader::loadTransaction, 1000, maxRecords);
 
 	write "Data loaded in " & getElapsedTimeString(startTime);
 	write "Transaction totals:";
@@ -1934,11 +1944,11 @@ runSmoketest
 {
 runSmoketest();
 vars
-	account : Account;
+	transaction : Transaction;
 begin
 	beginTransaction;
-		foreach account in Account.instances do
-			account.active := true;
+		foreach transaction in Transaction.instances do
+			transaction.smoketestFlag := true;
 		endforeach;
 	commitTransaction;
 end;
