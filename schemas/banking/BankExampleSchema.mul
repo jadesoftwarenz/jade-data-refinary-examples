@@ -1,4 +1,0 @@
-﻿#MULTIPLE_SCHEMA_EXTRACT
-BankModelSchema.scm BankModelSchema.ddx
-BankRestSchema.scm BankRestSchema.ddx
-JadeScript_causeActivation.mth
