@@ -1,6 +1,18 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
+  "required": [
+    "eventId",
+    "schemaId",
+    "eventType",
+    "eventTime",
+    "eventTimezoneOffset",
+    "eventSequenceNumber",
+    "contentType",
+    "transactionId",
+    "objectType",
+    "object"
+  ],
   "properties": {
     "eventId": {
       "type": "string"
@@ -14,6 +26,12 @@
     "eventTime": {
       "type": "string",
       "format": "date-time"
+    },
+    "eventTimezoneOffset": {
+      "type": "string"
+    },
+    "eventSequenceNumber": {
+      "type": "integer"
     },
     "contentType": {
       "type": "string"
@@ -31,35 +49,29 @@
   "definitions": {
     "Object": {
       "type": "object",
+      "required": [
+        "Jade.oid",
+        "Jade.instanceId",
+        "Jade.edition",
+        "id",
+        "timestamp",
+        "type",
+        "amount",
+        "k_symbol",
+        "primary_account",
+        "current_balance"
+      ],
       "properties": {
-        "oid": {
+        "Jade.oid": {
           "type": "string"
         },
-        "instanceId": {
+        "Jade.instanceId": {
           "type": "integer"
         },
-        "edition": {
+        "Jade.edition": {
           "type": "integer"
-        },
-        "account_id": {
-          "type": "string"
-        },
-        "amount": {
-          "type": "number"
         },
         "id": {
-          "type": "string"
-        },
-        "k_symbol": {
-          "type": "string"
-        },
-        "operation": {
-          "type": "string"
-        },
-        "otherAccount": {
-          "type": "string"
-        },
-        "otherBank": {
           "type": "string"
         },
         "timestamp": {
@@ -69,27 +81,49 @@
         "type": {
           "type": "string"
         },
-        "myAccount": {
-          "$ref": "#/definitions/ObjectReference"
+        "operation": {
+          "type": ["string", "null"]
         },
-        "myBank": {
-          "$ref": "#/definitions/ObjectReference"
+        "amount": {
+          "type": "number"
+        },
+        "k_symbol": {
+          "type": "string"
+        },
+        "primary_account": {
+          "$ref": "#/definitions/Account"
+        },
+        "counterparty_account": {
+          "$ref": "#/definitions/Account"
+        },
+        "current_balance": {
+          "type": "string"
         }
       }
     },
-    "ObjectReference": {
+    "Account": {
       "type": "object",
+      "required": [
+        "id",
+        "name",
+        "type",
+        "district_id"
+      ],
       "properties": {
-        "objectType": {
+        "id": {
           "type": "string"
         },
-        "instanceId": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "district_id": {
           "type": "integer"
-        },
-        "oid": {
-          "type": "string"
         }
       }
     }
   }
 }
+

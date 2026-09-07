@@ -1,33 +1,35 @@
 {
-    "eventId": "07b366bc-2864-ee11-9362-005056a99710.2514.1.1",
-    "schemaId": "2514.0001",
+    "eventId": "25c87312-3ba1-f111-918b-005056a99710.2147.104.1",
+    "schemaId": "com.bankmodel.events.Transaction@1.0.0",
     "eventType": "JadeSoftware.ObjectStorage.ObjectCreated",
-    "eventTime": "2024-04-29T08:55:00Z",
+    "eventTime": "2026-08-27T05:34:03.515Z",
+    "eventTimezoneOffset": "+12:00",
+    "eventSequenceNumber": 70469,
     "contentType": "application/json",
-    "transactionId": 11095,
+    "transactionId": 714,
     "objectType": "BankModelSchema::Transaction",
     "object": {
-        "oid": "2514.1",
-        "instanceId": 1,
-        "edition": 1,
-        "account_id": "A00002378",
-        "amount": 700.00,
-        "id": "T00695247",
-        "k_symbol": "",
-        "operation": "Credit in Cash",
-        "otherAccount": "",
-        "otherBank": "",
-        "timestamp": "2013-01-01T11:02:40Z",
+        "Jade.oid": "2147.104",
+        "Jade.instanceId": 0,
+        "Jade.edition": 1,
+        "id": "T00000641",
+        "timestamp": "2018-01-31T11:33:16.000Z",
         "type": "Credit",
-        "myAccount": {
-            "objectType": "BankModelSchema::Account",
-            "instanceId": 4,
-            "oid": "2450.4"
+        "operation": null,
+        "amount": 150.70,
+        "k_symbol": "Interest Credited",
+        "primary_account": {
+            "id": "A00000002",
+            "name": "Account-A00000002",
+            "type": "Joint",
+            "district_id": 1
         },
-        "myBank": {
-            "objectType": "BankModelSchema::Bank",
-            "instanceId": 1,
-            "oid": "2435.1"
-        }
+        "counterparty_account": {
+            "id": "A00000804",
+            "name": "Account-A00000804",
+            "type": "Personal",
+            "district_id": 64
+        },
+        "current_balance": "42627.70"
     }
 }
