@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<schema name="BankModelSchema" JadeVersionNumber="99.0.00" JadePatchNumber="0" CompleteDefinition="true">
+<schema name="BankModelSchema" JadeVersionNumber="99.0.00" CompleteDefinition="true">
 	<Application name="BankModelSchema">
 		<__overridePatchNumber>0</__overridePatchNumber>
 		<__patchControlString/>

@@ -12,6 +12,7 @@ typeHeaders
 	Bank subclassOf Object highestSubId = 4, highestOrdinal = 5, number = 2138;
 	BankEntity subclassOf Object highestOrdinal = 1, number = 2139;
 	Account subclassOf BankEntity highestSubId = 3, highestOrdinal = 12, number = 2140;
+	SavingsAccount subclassOf Account number = 2070;
 	Card subclassOf BankEntity number = 2141;
 	Customer subclassOf BankEntity highestOrdinal = 18, number = 2142;
 	District subclassOf BankEntity highestSubId = 3, highestOrdinal = 10, number = 2143;
@@ -139,6 +140,13 @@ typeDefinitions
 			account_to: Integer; 
 			amount: Decimal; 
 			k_symbol: String): Order number = 1017;
+		createSavingsAccount(
+			id: String; 
+			district_id: Integer; 
+			frequency: String; 
+			date: Date; 
+			name: String; 
+			type: String): SavingsAccount number = 1018;
 		createTransaction(
 			id: String; 
 			timestamp: TimeStamp; 
@@ -203,7 +211,22 @@ typeDefinitions
 			district: District) updating, number = 1001;
 		currentBalance(): Decimal number = 1002;
 		getFirstTransaction(): Transaction refinery, number = 1003;
+		getLabel(): String refinery, number = 1005;
 		getLastTransaction(): Transaction refinery, number = 1004;
+	)
+	SavingsAccount completeDefinition
+	(
+	jadeMethodDefinitions
+		create(
+			id: String; 
+			district_id: Integer; 
+			frequency: String; 
+			date: Date; 
+			name: String; 
+			type: String; 
+			parent: Bank; 
+			district: District) updating, number = 1002;
+		getLabel(): String refinery, number = 1001;
 	)
 	Card completeDefinition
 	(
@@ -533,6 +556,7 @@ typeDefinitions
 		startRefineryCC() number = 1018;
 		stopCapture() number = 1013;
 		stopRefineryCC() number = 1019;
+		testJdrActivation() number = 1025;
 		updateAccounts() number = 1014;
 		updateCustomerSlobs() number = 1015;
 		updateCustomers() number = 1016;
@@ -645,6 +669,7 @@ databaseDefinitions
 		Order in "bank_data";
 		OrderByIdDict in "bank_default";
 		SFCModelSchema in "_environ";
+		SavingsAccount in "bank_data";
 		Transaction in "transaction";
 		TransactionByIdDict in "transaction";
 		TransferTransaction in "transaction";
@@ -823,6 +848,17 @@ vars
 begin
 	order := create Order(id, bank_to, account_to, amount, k_symbol, getAccountById(account_id));
 	return order;
+end;
+}
+createSavingsAccount
+{
+createSavingsAccount(id : String; district_id : Integer; frequency : String; date : Date; name : String; type : String) : SavingsAccount;
+
+vars
+	account : SavingsAccount;
+begin
+	account := create SavingsAccount(id, district_id, frequency, date, name, type, self, getDistrictById(district_id));
+	return account;
 end;
 }
 createTransaction
@@ -1006,6 +1042,14 @@ begin
 end;
 
 }
+getLabel
+{
+getLabel(): String refinery;
+begin
+	return "ACC" & id;
+end;
+
+}
 getLastTransaction
 {
 getLastTransaction() : Transaction refinery;
@@ -1014,6 +1058,26 @@ vars
 
 begin
 	return myTransactions.last();
+end;
+
+}
+	)
+	SavingsAccount (
+	jadeMethodSources
+create
+{
+create(id : String; district_id : Integer; frequency : String; date : Date; name : String; type : String; parent : Bank; district : District) 
+				::super(id, district_id, frequency, date, name, type, parent, district) updating;
+begin
+
+end;
+
+}
+getLabel
+{
+getLabel(): String refinery;
+begin
+	return "SAV" & id;
 end;
 
 }
@@ -1340,8 +1404,12 @@ begin
 	date   := attributes.at(4).value.Date;
 	name := attributes.at(9).value;
 	type := attributes.at(10).value;
-
-	self.myRoot.createAccount(account_id, district_id, frequency, date, name, type);
+	
+	if type = "Savings" then
+		self.myRoot.createSavingsAccount(account_id, district_id, frequency, date, name, type);
+	else
+		self.myRoot.createAccount(account_id, district_id, frequency, date, name, type);
+	endif;
 end;
 }
 loadCardTransaction
@@ -2032,6 +2100,22 @@ stopRefineryCC();
 begin
 	system.stopRefineryChangeCapture();
 end;
+}
+testJdrActivation
+{
+testJdrActivation();
+
+vars
+	dba : JadeDatabaseAdmin;
+begin
+	create dba transient;
+	
+	dba.__previewJdrActivation("d3e9eb71-a779-4d96-946e-701572460851");
+
+epilog
+	delete dba;
+end;
+
 }
 updateAccounts
 {

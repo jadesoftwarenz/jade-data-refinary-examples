@@ -11,13 +11,17 @@
     "versionTag": "Release-1.0.0",
     "modifiedAt": "2026-04-29T00:00:00Z"
   },
-
   "mapping": {
-
     "source": {
       "extent": {
-        "name": "BankModelSchema::Account"
-      }
+        "$comment": "Recursive extent, includes all types of account",
+        "name": "BankModelSchema::Account",
+        "recursive": true
+      },
+      "operations": [
+        "create",
+        "update"
+      ]
     },
     "target": {
       "event": {
@@ -28,39 +32,81 @@
         }
       }
     },
-
+    "templates": [
+      {
+        "$comment": "RCC: Trans.getFirstTransaction() -> object.first_transaction",
+        "name": "com.BankModel.Events.Templates.Account.Transaction",
+        "extent": "BankModelSchema::Transaction",
+        "messageMappings": [
+          {
+            "required": false,
+            "source": "id",
+            "policy": {
+              "onNullOrEmpty": "omit"
+            }
+          }
+        ]
+      }
+    ],
     "messageMappings": [
-        {
-          "$comment": "Account.id -> object.id",
-          "required": true,
-          "source": "id"
-        },
-        {
-          "$comment": "Account.active -> object.active",
-          "required": true,
-          "source": "active"
-        },
-        {
-          "$comment": "Account.date -> object.date",
-          "required": false,
-          "source": "date",
-          "policy": {
-            "onNull": "omit"
-          }
-        },
-        {
-          "$comment": "Account.district_id -> object.district_id",
-          "required": true,
-          "source": "district_id"
-        },
-        {
-          "$comment": "Account.frequency -> object.frequency",
-          "required": false,
-          "source": "frequency",
-          "policy": {
-            "onNullOrEmpty": "omit"
-          }
+      {
+        "$comment": "Account.id -> object.id",
+        "required": true,
+        "source": "id"
+      },
+      {
+        "$comment": "Account.active -> object.active",
+        "required": true,
+        "source": "active"
+      },
+      {
+        "$comment": "Account.date -> object.date",
+        "required": false,
+        "source": "date",
+        "policy": {
+          "onNull": "omit"
         }
-      ]
-    }
+      },
+      {
+        "$comment": "Account.district_id -> object.district_id",
+        "required": true,
+        "source": "district_id"
+      },
+      {
+        "$comment": "Account.frequency -> object.frequency",
+        "required": false,
+        "source": "frequency",
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$comment": "Account.name -> object.name",
+        "required": false,
+        "source": "name",
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$comment": "Account.label -> object.label",
+        "required": false,
+        "source": "getLabel()",
+        "target": "label",
+        "policy": {
+          "onNullOrEmpty": "omit"
+        }
+      },
+      {
+        "$comment": "Trans.getFirstTransaction() -> object.first_transaction",
+        "required": false,
+        "source": "getFirstTransaction()",
+        "target": "first_transaction",
+        "template": "com.BankModel.Events.Templates.Account.Transaction",
+        "policy": {
+          "onError": "omit"
+        }
+      }
+    ]
   }
+}

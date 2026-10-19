@@ -17,7 +17,12 @@
     "source": {
       "extent": {
         "name": "BankModelSchema::Bank"
-      }
+      },
+      "operations": [
+        "create",
+        "update"
+      ]
+      
     },
     "target": {
       "event": {

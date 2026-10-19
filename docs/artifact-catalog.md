@@ -1,10 +1,10 @@
-# V1 Artifact Catalog
+# Banking Example Artifact Catalog
 
-This catalog lists all imported artefacts for the initial `jade-data-refinery-example` build.
+This catalog lists the assets included in the banking example.
 
 ## Event Mapping Specs (EMS)
 
-Destination: `examples/banking-transaction/event-mapping-specs`
+The following mapping specifications are stored in `examples/banking-transaction/event-mapping-specs`:
 
 - `account.mapping.json`
 - `bank.mapping.json`
@@ -16,16 +16,14 @@ Destination: `examples/banking-transaction/event-mapping-specs`
 
 ## Schema Inputs
 
-Destination: `schemas/banking`
+The following schema inputs are stored in `schemas/banking`:
 
 - `BankModelSchema.scm`
 - `BankModelSchema.ddx`
-- `BankExampleSchema.mul`
-- `JadeScript_causeActivation.mth`
 
 ## Demo Data
 
-Destination: `data/banking-demo`
+The following demo data files are stored in `data/banking-demo`:
 
 - `account.csv`
 - `client.csv`
@@ -35,18 +33,9 @@ Destination: `data/banking-demo`
 - `order.csv`
 - `transaction.csv`
 
-## Expected Output
+## Using These Assets
 
-Destination: `examples/banking-transaction/expected-output`
+The schema, mapping specifications, and demo data support the banking example:
 
-- `transaction_create.json`
-- `transaction_0001.schema.json`
-
-## Import Policy
-
-- These artefacts are copied from `jade-data-refinery-tools/resources`.
-- Source files are not moved or modified.
-
-## Planned Evolution
-
-The EMS files are the maintained source for this example. Compile them locally with `JdrBundleSmith` to produce the mapping bundle used for activation; compiled bundle/contract artefacts are not checked in to this repository.
+- Use the schema and demo data to set up the example application.
+- Use the mapping specifications when working through the JDR banking tutorial.

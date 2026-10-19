@@ -16,7 +16,8 @@
 
     "source": {
       "extent": {
-        "$comment": "Recursive extent, includes CashTransaction, TransferTransaction and CardTransaction",
+        "$comment": "Recursive extent, includes all types of transaction",
+        "recursive": true,
         "name": "BankModelSchema::Transaction"
       }
     },
@@ -42,6 +43,10 @@
             "policy": {
               "onNullOrEmpty": "omit"
             }
+          },
+          {
+            "required": false,
+            "source": "incarnation"
           },
           {
             "required": false,

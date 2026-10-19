@@ -1,66 +1,37 @@
 # Jade Data Refinery Examples
 
-This repository contains example assets referenced by Jade Data Refinery (JDR) user documentation and tutorials.
+This repository contains banking example assets for Jade Data Refinery (JDR).
 
-The current reference scenario is a runnable banking transaction example aligned to the JDR tutorial walkthrough.
-
-Use this repository for the schema inputs, demo data, bundle artefacts, and representative output used by that scenario.
+The assets include an application schema, event mapping specifications, and demo data. Online documentation links are not yet available; see the related resource descriptions below.
 
 ## Prerequisites
 
-Before using these examples, complete the JDR Getting Started setup.
+Before using these examples, prepare an environment supported by your installed JDR release.
 
-You need:
+The example environment requires:
 
-* Jade Platform 2025.0.03 (2025 R3) or later
-* A valid JDR licence
-* A working Jade primary database
-* A dedicated Refinery Secondary
-* Refinery Change Capture Process (CCP) configured and running
+* A licensed JDR deployment and compatible Jade Platform environment
+* A Jade primary database and a refinery secondary with Change Capture Process (CCP) configured
 * JDR ESP installed and configured
-* File-system access to the example and JDR runtime directories
-* Access to the JDR user documentation
+* File-system access to the example assets and required JDR runtime directories
 
-The banking tutorial uses local FileSender output, so Kafka or Azure Event Hubs is not required.
+Use the JDR Getting Started guidance for environment setup and version compatibility.
 
-See the [JDR Getting Started Guide](https://jadesoftware.atlassian.net/wiki/spaces/IDR/pages/3702784015/Jade+Data+Refinery+JDR+-+Getting+Started+Guide) if you have not yet set up a working JDR environment.
+## Using the Examples
 
-## Quick Start
+Use the following assets with the JDR banking example workflow:
 
-1. Complete the [JDR Getting Started Guide](https://jadesoftware.atlassian.net/wiki/spaces/IDR/pages/3702784015/Jade+Data+Refinery+JDR+-+Getting+Started+Guide).
+1. Load the banking application schema and demo data into the example environment.
 
-2. Follow the [JDR Banking Tutorial](https://jadesoftware.atlassian.net/wiki/spaces/IDR/pages/3703144465/Jade+Data+Refinery+JDR+-+Tutorial).
-
-3. Load the banking example schema and data from this repository.
-
-4. Use the banking transaction Event Mapping Specs (EMS) under:
+2. Use the Event Mapping Specs (EMS) under:
 
    ```text
    examples/banking-transaction/event-mapping-specs/
    ```
 
-5. Compile the EMS files with `JdrBundleSmith` into a mapping bundle and deploy it to the `BundleStorageDirectory` configured for your Refinery Secondary.
-
-6. Activate the bundle using the JDR bundle activation procedure.
-
-7. Generate the tutorial transactions:
-
-   * A cash transaction
-   * A transfer transaction
-
-8. Inspect the generated FileSender output.
-
-9. Compare the structure and enrichment with the reference files under:
-
-   ```text
-   examples/banking-transaction/expected-output/
-   ```
-
-The expected output is intended to verify event structure and enrichment. Runtime-generated identifiers, timestamps, sequence numbers, and transaction-specific values may differ between runs.
-
 ## Repository Layout
 
-The repository is organised by example assets, schema inputs, and demo data.
+The repository groups the example assets by mapping, schema, and demo data.
 
 ```text
 jade-data-refinery-examples/
@@ -78,17 +49,11 @@ jade-data-refinery-examples/
 |       |   +-- loan.mapping.json
 |       |   +-- order.mapping.json
 |       |   +-- transaction.mapping.json
-|       |
-|       +-- expected-output/
-|           +-- transaction_create.json
-|           +-- transaction_0001.schema.json
 |
 +-- schemas/
 |   +-- banking/
 |       +-- BankModelSchema.scm
 |       +-- BankModelSchema.ddx
-|       +-- BankExampleSchema.mul
-|       +-- JadeScript_causeActivation.mth
 |
 +-- data/
 |   +-- banking-demo/
@@ -99,55 +64,28 @@ jade-data-refinery-examples/
     +-- artifact-catalog.md
 ```
 
-Refer to the JDR tutorial for detailed mapping, activation, and verification steps.
+For detailed setup, mapping, activation, and verification instructions, consult the JDR documentation.
 
-## Current Scope and Limitations
+## Scope and Compatibility
 
-This repository currently provides the R1 banking transaction example.
+This repository contains the banking application schema, mapping specifications, and demo CSV data.
 
-The current scope is intentionally focused:
+Schema, mapping, and runtime compatibility depends on the installed JDR and Jade Platform versions. Confirm compatibility using the current JDR release notes and mapping guidance before deploying a bundle.
 
-* The banking Transaction example is the primary reference scenario.
-* FileSender is used for the basic tutorial verification path.
-* Kafka and Azure Event Hubs configuration is covered by the JDR documentation rather than duplicated here.
-* Test-only bundle variants are not included.
-* Expected output is representative rather than byte-for-byte deterministic.
+## Related Resources
 
-Current V1 state:
+The following JDR resources provide guidance; online documentation links are not yet available:
 
-* The repository includes hand-authored EMS files used by the tutorial scenario. These are the maintained source.
-* Compiled bundle and contract artefacts are not checked in; compile the EMS files locally with `JdrBundleSmith` to produce the bundle used for activation.
-
-## Compatibility
-
-The examples are intended for:
-
-```text
-Jade Platform 2025.0.03 (2025 R3) or later
-Jade Data Refinery R1
-```
-
-Example mappings, generated contracts, and banking schema assets may depend on the corresponding JDR mapping schema and runtime versions.
-
-When using these examples with a later JDR release, review the release notes and mapping compatibility guidance before deploying the supplied bundle unchanged.
-
-## Related Documentation
-
-* [Jade Data Refinery - User Documentation](https://jadesoftware.atlassian.net/wiki/spaces/IDR/pages/3701276687/User+Documentation)
-* [Jade Data Refinery - Getting Started Guide](https://jadesoftware.atlassian.net/wiki/spaces/IDR/pages/3702784015/Jade+Data+Refinery+JDR+-+Getting+Started+Guide)
-* [Jade Data Refinery - User Manual](https://jadesoftware.atlassian.net/wiki/spaces/IDR/pages/3702128689/Jade+Data+Refinery+JDR+-+User+Manual)
-* [Jade Data Refinery - Tutorial](https://jadesoftware.atlassian.net/wiki/spaces/IDR/pages/3703144465/Jade+Data+Refinery+JDR+-+Tutorial)
-* [Jade Data Refinery - R1 Release Notes](https://jadesoftware.atlassian.net/wiki/spaces/IDR/pages/3702030369/Jade+Data+Refinery+JDR+-+R1+Release+Notes)
+* JDR user documentation for product concepts and operation
+* JDR Getting Started guidance for environment setup
+* JDR banking tutorial for working through the example
+* JDR release notes and mapping compatibility guidance for version-specific changes
 
 ## Feedback and Issues
 
-If an example does not behave as described by the corresponding JDR documentation, capture:
+For help with an example, contact your Jade support representative. Include the following details:
 
 * The JDR version
 * The Jade Platform version
-* The example and bundle version
-* Refinery Secondary JOM messages relevant to bundle validation or activation
-* JDR ESP `producer.log` messages relevant to event processing
-* The generated output, where applicable
-
-Use the standard Jade support or project issue-reporting process for this repository.
+* The affected example
+* The steps followed and the observed result

@@ -17,7 +17,11 @@
     "source": {
       "extent": {
         "name": "BankModelSchema::Order"
-      }
+      },
+      "operations": [
+        "create",
+        "update"
+      ]
     },
     "target": {
       "event": {

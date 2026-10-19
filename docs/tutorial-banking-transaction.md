@@ -1,14 +1,15 @@
-# Banking Transaction Example (V1)
+# Banking Example Assets
 
-This page describes the local example artefacts provided for the banking transaction tutorial.
+This page describes the banking example assets provided in this repository.
 
 ## Purpose
 
-This repository provides a stable, copy-only V1 example package that can be used alongside the JDR tutorial.
+The example assets provide a banking application schema, event mappings, and demo data for use with JDR.
 
 ## Included Example Assets
 
-- Event Mapping Specs (EMS) for the main bundle contracts: `account`, `bank`, `customer`, `district`, `loan`, `order`, `transaction`
-- Banking schema artefacts required for the example model
+The included assets cover:
+
+- Event Mapping Specs (EMS) for `account`, `bank`, `customer`, `district`, `loan`, `order`, and `transaction`
+- Banking application schema files
 - Banking demo CSV data
-- Expected transaction output artefacts

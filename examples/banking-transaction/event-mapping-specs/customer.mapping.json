@@ -15,7 +15,11 @@
     "source": {
       "extent": {
         "name": "BankModelSchema::Customer"
-      }
+      },
+      "operations": [
+        "create",
+        "update"
+      ]
     },
     "target": {
       "event": {

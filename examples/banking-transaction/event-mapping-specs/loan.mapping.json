@@ -11,13 +11,15 @@
     "versionTag": "Release-1.0.0",
     "modifiedAt": "2026-06-18T00:00:00Z"
   },
-
   "mapping": {
-
     "source": {
       "extent": {
         "name": "BankModelSchema::Loan"
-      }
+      },
+      "operations": [
+        "create",
+        "update"
+      ]
     },
     "target": {
       "event": {
@@ -28,7 +30,6 @@
         }
       }
     },
-
     "templates": [
       {
         "$comment": "RCC: Loan.myAccount -> object.account",
@@ -49,7 +50,6 @@
         ]
       }
     ],
-
     "messageMappings": [
       {
         "$comment": "Loan.id -> object.id",
