@@ -527,6 +527,8 @@ typeDefinitions
 	jadeMethodDefinitions
 		loadData();
 		loadDataWithDialog();
+		purgeData();
+		purgeTransactions();
 		startRefineryCC();
 		stopRefineryCC();
 		updateAccounts();
@@ -1814,6 +1816,46 @@ begin
 epilog
 	delete dataLoader; 
 	delete fileFolder; 
+end;
+}
+purgeData
+{
+purgeData();
+
+begin
+	purgeTransactions();
+
+	beginTransaction;
+	delete Bank.firstInstance;
+	commitTransaction;
+end;
+}
+purgeTransactions
+{
+purgeTransactions();
+vars
+	bank : Bank;
+	transaction : Transaction;
+	startClock : Integer;
+	count : Integer;
+begin
+	bank := Bank.lastInstance();
+	if bank = null then
+		return;
+	endif;
+	startClock := app.clock();
+	beginTransaction;
+	foreach transaction in bank.allTransactions do
+		count += 1;
+		if count mod 50000 = 0 then
+			commitTransaction;
+			beginTransaction;
+			write count.String & " transactions deleted in " & DataLoader@getElapsedTimeString(startClock);
+		endif;
+		delete transaction;
+	endforeach;
+	commitTransaction;
+
 end;
 }
 startRefineryCC
