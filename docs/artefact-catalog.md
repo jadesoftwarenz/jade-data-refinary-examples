@@ -1,4 +1,4 @@
-# Banking Example Artifact Catalog
+# Banking Example Artefact Catalog
 
 This catalog lists the assets included in the banking example.
 
