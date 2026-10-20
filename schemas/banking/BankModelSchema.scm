@@ -8,30 +8,30 @@ localeDefinitions
 	5129 "English (New Zealand)" schemaDefaultLocale;
 	1033 "English (United States)" _cloneOf 5129;
 typeHeaders
-	BankModelSchema subclassOf RootSchemaApp transient, sharedTransientAllowed, transientAllowed, subclassSharedTransientAllowed, subclassTransientAllowed, highestOrdinal = 1, number = 2137;
-	Bank subclassOf Object highestSubId = 4, highestOrdinal = 5, number = 2138;
-	BankEntity subclassOf Object highestOrdinal = 1, number = 2139;
-	Account subclassOf BankEntity highestSubId = 3, highestOrdinal = 12, number = 2140;
-	SavingsAccount subclassOf Account number = 2070;
-	Card subclassOf BankEntity number = 2141;
-	Customer subclassOf BankEntity highestOrdinal = 18, number = 2142;
-	District subclassOf BankEntity highestSubId = 3, highestOrdinal = 10, number = 2143;
-	Institute subclassOf BankEntity highestOrdinal = 1, number = 2144;
-	Loan subclassOf BankEntity highestOrdinal = 11, dynamicPropertyCluster = "BankEntityCluster", number = 2145;
-	Order subclassOf BankEntity highestOrdinal = 6, number = 2146;
-	Transaction subclassOf BankEntity highestOrdinal = 13, number = 2147;
-	CardTransaction subclassOf Transaction highestOrdinal = 3, number = 2121;
-	CashTransaction subclassOf Transaction highestOrdinal = 2, number = 2119;
-	TransferTransaction subclassOf Transaction highestOrdinal = 3, number = 2120;
-	DataLoader subclassOf Object highestOrdinal = 6, number = 2122;
-	GFCModelSchema subclassOf RootSchemaGlobal transient, sharedTransientAllowed, transientAllowed, subclassSharedTransientAllowed, subclassTransientAllowed, number = 2123;
-	SFCModelSchema subclassOf RootSchemaSession transient, sharedTransientAllowed, transientAllowed, subclassSharedTransientAllowed, subclassTransientAllowed, highestOrdinal = 1, number = 2124;
-	AccountByIdDict subclassOf MemberKeyDictionary number = 2125;
-	CustomerByIdDict subclassOf MemberKeyDictionary number = 2126;
-	DistrictByIdDict subclassOf MemberKeyDictionary number = 2127;
-	LoanByIdDict subclassOf MemberKeyDictionary loadFactor = 66, number = 2053;
-	OrderByIdDict subclassOf MemberKeyDictionary loadFactor = 66, number = 2054;
-	TransactionByIdDict subclassOf MemberKeyDictionary number = 2128;
+	BankModelSchema subclassOf RootSchemaApp transient, sharedTransientAllowed, transientAllowed, subclassSharedTransientAllowed, subclassTransientAllowed;
+	Bank subclassOf Object;
+	BankEntity subclassOf Object;
+	Account subclassOf BankEntity;
+	SavingsAccount subclassOf Account;
+	Card subclassOf BankEntity;
+	Customer subclassOf BankEntity;
+	District subclassOf BankEntity;
+	Institute subclassOf BankEntity;
+	Loan subclassOf BankEntity dynamicPropertyCluster = "BankEntityCluster";
+	Order subclassOf BankEntity;
+	Transaction subclassOf BankEntity;
+	CardTransaction subclassOf Transaction;
+	CashTransaction subclassOf Transaction;
+	TransferTransaction subclassOf Transaction;
+	DataLoader subclassOf Object;
+	GFCModelSchema subclassOf RootSchemaGlobal transient, sharedTransientAllowed, transientAllowed, subclassSharedTransientAllowed, subclassTransientAllowed;
+	SFCModelSchema subclassOf RootSchemaSession transient, sharedTransientAllowed, transientAllowed, subclassSharedTransientAllowed, subclassTransientAllowed;
+	AccountByIdDict subclassOf MemberKeyDictionary;
+	CustomerByIdDict subclassOf MemberKeyDictionary;
+	DistrictByIdDict subclassOf MemberKeyDictionary;
+	LoanByIdDict subclassOf MemberKeyDictionary loadFactor = 66;
+	OrderByIdDict subclassOf MemberKeyDictionary loadFactor = 66;
+	TransactionByIdDict subclassOf MemberKeyDictionary;
 membershipDefinitions
 	AccountByIdDict of Account;
 	CustomerByIdDict of Customer;
@@ -52,30 +52,30 @@ typeDefinitions
 	BankModelSchema completeDefinition
 	(
 	referenceDefinitions
-		myRoot:                        Bank  number = 1, ordinal = 1;
+		myRoot:                        Bank ;
 	jadeMethodDefinitions
-		initialize() updating, number = 1001;
-		loadData(args: HugeStringArray) number = 1002;
-		raiseModelException(errorNo: Integer) number = 1003;
+		initialize() updating;
+		loadData(args: HugeStringArray);
+		raiseModelException(errorNo: Integer);
 	)
 	Bank completeDefinition
 	(
 	attributeDefinitions
-		name:                          String[101] protected, number = 1, ordinal = 1;
+		name:                          String[101] protected;
 	referenceDefinitions
-		allAccounts:                   AccountByIdDict   explicitInverse, readonly, subId = 1, number = 2, ordinal = 2;
-		allCustomers:                  CustomerByIdDict   explicitInverse, readonly, subId = 2, number = 3, ordinal = 3;
-		allDistricts:                  DistrictByIdDict   explicitInverse, subId = 3, number = 4, ordinal = 4;
-		allTransactions:               TransactionByIdDict   explicitInverse, readonly, subId = 4, number = 5, ordinal = 5;
+		allAccounts:                   AccountByIdDict   explicitInverse, readonly;
+		allCustomers:                  CustomerByIdDict   explicitInverse, readonly;
+		allDistricts:                  DistrictByIdDict   explicitInverse;
+		allTransactions:               TransactionByIdDict   explicitInverse, readonly;
 	jadeMethodDefinitions
-		create(name: String) updating, number = 1001;
+		create(name: String) updating;
 		createAccount(
 			id: String; 
 			district_id: Integer; 
 			frequency: String; 
 			date: Date; 
 			name: String; 
-			type: String): Account number = 1002;
+			type: String): Account;
 		createCardTransaction(
 			id: String; 
 			timestamp: TimeStamp; 
@@ -88,7 +88,7 @@ typeDefinitions
 			otherAccount: String; 
 			cardNumber: String; 
 			merchantId: String; 
-			authCode: String): CardTransaction number = 1003;
+			authCode: String): CardTransaction;
 		createCashTransaction(
 			id: String; 
 			timestamp: TimeStamp; 
@@ -100,7 +100,7 @@ typeDefinitions
 			otherBank: String; 
 			otherAccount: String; 
 			branchCode: String; 
-			tellerRef: String): CashTransaction number = 1004;
+			tellerRef: String): CashTransaction;
 		createCustomer(
 			id: String; 
 			gender: String; 
@@ -116,14 +116,14 @@ typeDefinitions
 			state: String; 
 			zipcode: String; 
 			district_id: Integer; 
-			dob: Date) number = 1005;
+			dob: Date);
 		createDistrict(
 			id: Integer; 
 			city: String; 
 			stateName: String; 
 			stateAbbrev: String; 
 			region: String; 
-			division: String): District number = 1006;
+			division: String): District;
 		createLoan(
 			id: String; 
 			account_id: String; 
@@ -132,21 +132,21 @@ typeDefinitions
 			payments: Integer; 
 			status: Character; 
 			date: Date; 
-			purpose: String): Loan number = 1016;
+			purpose: String): Loan;
 		createOrder(
 			id: Integer64; 
 			account_id: String; 
 			bank_to: String; 
 			account_to: Integer; 
 			amount: Decimal; 
-			k_symbol: String): Order number = 1017;
+			k_symbol: String): Order;
 		createSavingsAccount(
 			id: String; 
 			district_id: Integer; 
 			frequency: String; 
 			date: Date; 
 			name: String; 
-			type: String): SavingsAccount number = 1018;
+			type: String): SavingsAccount;
 		createTransaction(
 			id: String; 
 			timestamp: TimeStamp; 
@@ -156,7 +156,7 @@ typeDefinitions
 			amount: Decimal; 
 			k_symbol: String; 
 			otherBank: String; 
-			otherAccount: String): Transaction number = 1007;
+			otherAccount: String): Transaction;
 		createTransferTransaction(
 			id: String; 
 			timestamp: TimeStamp; 
@@ -169,36 +169,36 @@ typeDefinitions
 			otherAccount: String; 
 			transferRef: String; 
 			clearingCode: String; 
-			valueDate: Date): TransferTransaction number = 1008;
-		getAccountById(id: String): Account number = 1009;
-		getDistrictById(id: Integer): District number = 1010;
-		getName(): String number = 1011;
-		updateAccounts(doAbort: Boolean) number = 1012;
-		updateCustomerSlobs() number = 1013;
-		updateCustomers(doAbort: Boolean) number = 1014;
-		updateFirstCustomer() number = 1015;
+			valueDate: Date): TransferTransaction;
+		getAccountById(id: String): Account;
+		getDistrictById(id: Integer): District;
+		getName(): String;
+		updateAccounts(doAbort: Boolean);
+		updateCustomerSlobs();
+		updateCustomers(doAbort: Boolean);
+		updateFirstCustomer();
 	)
 	BankEntity completeDefinition
 	(
 	attributeDefinitions
-		incarnation:                   Integer protected, number = 1, ordinal = 1;
+		incarnation:                   Integer protected;
 	)
 	Account completeDefinition
 	(
 	attributeDefinitions
-		active:                        Boolean number = 1, ordinal = 1;
-		date:                          Date readonly, number = 2, ordinal = 2;
-		district_id:                   Integer readonly, number = 3, ordinal = 3;
-		frequency:                     String[31] readonly, number = 4, ordinal = 4;
-		id:                            String[13] readonly, number = 5, ordinal = 5;
-		name:                          String[81] readonly, number = 9, ordinal = 9;
-		type:                          String[17] readonly, number = 10, ordinal = 10;
+		active:                        Boolean;
+		date:                          Date readonly;
+		district_id:                   Integer readonly;
+		frequency:                     String[31] readonly;
+		id:                            String[13] readonly;
+		name:                          String[81] readonly;
+		type:                          String[17] readonly;
 	referenceDefinitions
-		myBank:                        Bank   explicitEmbeddedInverse, readonly, number = 6, ordinal = 6;
-		myDistrict:                    District   explicitEmbeddedInverse, readonly, number = 7, ordinal = 7;
-		myLoans:                       LoanByIdDict   explicitInverse, subId = 2, number = 11, ordinal = 11;
-		myOrders:                      OrderByIdDict   explicitInverse, readonly, subId = 3, number = 12, ordinal = 12;
-		myTransactions:                TransactionByIdDict   explicitInverse, readonly, subId = 1, number = 8, ordinal = 8;
+		myBank:                        Bank   explicitEmbeddedInverse, readonly;
+		myDistrict:                    District   explicitEmbeddedInverse, readonly;
+		myLoans:                       LoanByIdDict   explicitInverse;
+		myOrders:                      OrderByIdDict   explicitInverse, readonly;
+		myTransactions:                TransactionByIdDict   explicitInverse, readonly;
 	jadeMethodDefinitions
 		create(
 			id: String; 
@@ -208,11 +208,11 @@ typeDefinitions
 			name: String; 
 			type: String; 
 			parent: Bank; 
-			district: District) updating, number = 1001;
-		currentBalance(): Decimal number = 1002;
-		getFirstTransaction(): Transaction refinery, number = 1003;
-		getLabel(): String refinery, number = 1005;
-		getLastTransaction(): Transaction refinery, number = 1004;
+			district: District) updating;
+		currentBalance(): Decimal refinery;
+		getFirstTransaction(): Transaction refinery;
+		getLabel(): String refinery;
+		getLastTransaction(): Transaction refinery;
 	)
 	SavingsAccount completeDefinition
 	(
@@ -225,8 +225,8 @@ typeDefinitions
 			name: String; 
 			type: String; 
 			parent: Bank; 
-			district: District) updating, number = 1002;
-		getLabel(): String refinery, number = 1001;
+			district: District) updating;
+		getLabel(): String refinery;
 	)
 	Card completeDefinition
 	(
@@ -234,25 +234,25 @@ typeDefinitions
 	Customer completeDefinition
 	(
 	attributeDefinitions
-		active:                        Boolean number = 1, ordinal = 1;
-		address_1:                     String subId = 1, number = 2, ordinal = 2;
-		address_2:                     String subId = 2, number = 3, ordinal = 3;
-		city:                          String[31] number = 4, ordinal = 4;
-		dateOfBirth:                   Date number = 5, ordinal = 5;
-		district_id:                   Integer number = 6, ordinal = 6;
-		email:                         String[61] number = 7, ordinal = 7;
-		firstName:                     String[31] number = 8, ordinal = 8;
-		gender:                        String[7] number = 9, ordinal = 9;
-		id:                            String[13] number = 10, ordinal = 10;
-		lastName:                      String[31] number = 11, ordinal = 11;
-		middleName:                    String[31] number = 12, ordinal = 12;
-		phoneNumber:                   String[21] number = 13, ordinal = 13;
-		ssn:                           String[13] number = 14, ordinal = 14;
-		state:                         String[31] number = 15, ordinal = 15;
-		zipCode:                       String[13] number = 16, ordinal = 16;
+		active:                        Boolean;
+		address_1:                     String;
+		address_2:                     String;
+		city:                          String[31];
+		dateOfBirth:                   Date;
+		district_id:                   Integer;
+		email:                         String[61];
+		firstName:                     String[31];
+		gender:                        String[7];
+		id:                            String[13];
+		lastName:                      String[31];
+		middleName:                    String[31];
+		phoneNumber:                   String[21];
+		ssn:                           String[13];
+		state:                         String[31];
+		zipCode:                       String[13];
 	referenceDefinitions
-		myBank:                        Bank   explicitEmbeddedInverse, number = 17, ordinal = 17;
-		myDistrict:                    District   explicitEmbeddedInverse, number = 18, ordinal = 18;
+		myBank:                        Bank   explicitEmbeddedInverse;
+		myDistrict:                    District   explicitEmbeddedInverse;
 	jadeMethodDefinitions
 		create(
 			id: String; 
@@ -271,23 +271,23 @@ typeDefinitions
 			district_id: Integer; 
 			date: Date; 
 			parent: Bank; 
-			district: District) updating, number = 1001;
-		fullName(): String refinery, number = 1002;
+			district: District) updating;
+		fullName(): String refinery;
 	)
 	District completeDefinition
 	(
 	attributeDefinitions
-		city:                          String[31] number = 1, ordinal = 1;
-		division:                      String[21] number = 2, ordinal = 2;
-		id:                            Integer number = 3, ordinal = 3;
-		region:                        String[13] number = 4, ordinal = 4;
-		stateAbbrev:                   String[4] number = 5, ordinal = 5;
-		stateName:                     String[31] number = 6, ordinal = 6;
+		city:                          String[31];
+		division:                      String[21];
+		id:                            Integer;
+		region:                        String[13];
+		stateAbbrev:                   String[4];
+		stateName:                     String[31];
 	referenceDefinitions
-		allAccounts:                   AccountByIdDict   explicitInverse, subId = 1, number = 7, ordinal = 7;
-		allCustomers:                  CustomerByIdDict   explicitInverse, subId = 2, number = 8, ordinal = 8;
-		allLoans:                      LoanByIdDict   explicitInverse, subId = 3, number = 10, ordinal = 10;
-		myBank:                        Bank   explicitEmbeddedInverse, number = 9, ordinal = 9;
+		allAccounts:                   AccountByIdDict   explicitInverse;
+		allCustomers:                  CustomerByIdDict   explicitInverse;
+		allLoans:                      LoanByIdDict   explicitInverse;
+		myBank:                        Bank   explicitEmbeddedInverse;
 	jadeMethodDefinitions
 		create(
 			id: Integer; 
@@ -296,30 +296,30 @@ typeDefinitions
 			stateAbbrev: String; 
 			region: String; 
 			division: String; 
-			parent: Bank) updating, number = 1001;
-		getCityRegionState(): String refinery, number = 1002;
-		getNumberOfLoans(): Integer refinery, number = 1003;
+			parent: Bank) updating;
+		getCityRegionState(): String refinery;
+		getNumberOfLoans(): Integer refinery;
 	)
 	Institute completeDefinition
 	(
 	attributeDefinitions
-		id:                            Integer readonly, number = 1, ordinal = 1;
+		id:                            Integer readonly;
 	jadeMethodDefinitions
-		create(id: Integer) updating, number = 1001;
+		create(id: Integer) updating;
 	)
 	Loan completeDefinition
 	(
 	attributeDefinitions
-		amount:                        Decimal[15,2] number = 2, ordinal = 2;
-		date:                          Date number = 12, ordinal = 11;
-		duration:                      Integer number = 3, ordinal = 3;
-		id:                            String[13] readonly, number = 1, ordinal = 1;
-		payments:                      Integer number = 4, ordinal = 4;
-		purpose:                       String subId = 1, number = 11, ordinal = 1, dynamicPropertyCluster = "BankEntityCluster";
-		status:                        Character number = 7, ordinal = 7;
+		amount:                        Decimal[15,2];
+		date:                          Date;
+		duration:                      Integer;
+		id:                            String[13] readonly;
+		payments:                      Integer;
+		purpose:                       String dynamicPropertyCluster = "BankEntityCluster";
+		status:                        Character;
 	referenceDefinitions
-		myAccount:                     Account   explicitEmbeddedInverse, number = 5, ordinal = 5;
-		myDistrict:                    District   explicitEmbeddedInverse, number = 6, ordinal = 6;
+		myAccount:                     Account   explicitEmbeddedInverse;
+		myDistrict:                    District   explicitEmbeddedInverse;
 	jadeMethodDefinitions
 		create(
 			id: String; 
@@ -330,18 +330,18 @@ typeDefinitions
 			date: Date; 
 			purpose: String; 
 			account: Account; 
-			district: District) updating, number = 1001;
+			district: District) updating;
 	)
 	Order completeDefinition
 	(
 	attributeDefinitions
-		account_to:                    Integer number = 6, ordinal = 6;
-		amount:                        Decimal[15,2] number = 3, ordinal = 3;
-		bank_to:                       String[7] number = 5, ordinal = 5;
-		id:                            Integer64 readonly, number = 1, ordinal = 1;
-		k_symbol:                      String[26] number = 4, ordinal = 4;
+		account_to:                    Integer;
+		amount:                        Decimal[15,2];
+		bank_to:                       String[7];
+		id:                            Integer64 readonly;
+		k_symbol:                      String[26];
 	referenceDefinitions
-		myAccount:                     Account   explicitEmbeddedInverse, subschemaHidden, number = 2, ordinal = 2;
+		myAccount:                     Account   explicitEmbeddedInverse, subschemaHidden;
 	jadeMethodDefinitions
 		create(
 			id: Integer64; 
@@ -349,23 +349,22 @@ typeDefinitions
 			account_to: Integer; 
 			amount: Decimal; 
 			k_symbol: String; 
-			account: Account) updating, number = 1001;
+			account: Account) updating;
 	)
 	Transaction completeDefinition
 	(
 	attributeDefinitions
-		amount:                        Decimal[15,2] number = 2, ordinal = 2;
-		id:                            String[13] number = 3, ordinal = 3;
-		k_symbol:                      String[26] number = 4, ordinal = 4;
-		operation:                     String[31] number = 5, ordinal = 5;
-		otherBank:                     String[31] number = 7, ordinal = 7;
-		smoketestFlag:                 Boolean number = 1, ordinal = 13;
-		timestamp:                     TimeStamp number = 8, ordinal = 8;
-		type:                          String[11] number = 9, ordinal = 9;
+		amount:                        Decimal[15,2];
+		id:                            String[13];
+		k_symbol:                      String[26];
+		operation:                     String[31];
+		otherBank:                     String[31];
+		timestamp:                     TimeStamp;
+		type:                          String[11];
 	referenceDefinitions
-		myAccount:                     Account   explicitEmbeddedInverse, readonly, number = 10, ordinal = 10;
-		myBank:                        Bank   explicitEmbeddedInverse, readonly, number = 11, ordinal = 11;
-		myOtherAccount:                Account  readonly, number = 12, ordinal = 12;
+		myAccount:                     Account   explicitEmbeddedInverse, readonly;
+		myBank:                        Bank   explicitEmbeddedInverse, readonly;
+		myOtherAccount:                Account  readonly;
 	jadeMethodDefinitions
 		create(
 			id: String; 
@@ -377,15 +376,15 @@ typeDefinitions
 			otherBank: String; 
 			otherAccount: String; 
 			parent: Bank; 
-			account: Account) updating, number = 1001;
-		currentBalance(): Decimal refinery, number = 1002;
+			account: Account) updating;
+		currentBalance(): Decimal refinery;
 	)
 	CardTransaction completeDefinition
 	(
 	attributeDefinitions
-		authCode:                      String[8] number = 1, ordinal = 1;
-		cardNumber:                    String[21] number = 2, ordinal = 2;
-		merchantId:                    String[17] number = 3, ordinal = 3;
+		authCode:                      String[8];
+		cardNumber:                    String[21];
+		merchantId:                    String[17];
 	jadeMethodDefinitions
 		create(
 			id: String; 
@@ -400,13 +399,13 @@ typeDefinitions
 			account: Account; 
 			cardNumber: String; 
 			merchantId: String; 
-			authCode: String) updating, number = 1001;
+			authCode: String) updating;
 	)
 	CashTransaction completeDefinition
 	(
 	attributeDefinitions
-		branchCode:                    String[10] number = 1, ordinal = 1;
-		tellerRef:                     String[13] number = 2, ordinal = 2;
+		branchCode:                    String[10];
+		tellerRef:                     String[13];
 	jadeMethodDefinitions
 		create(
 			id: String; 
@@ -421,14 +420,14 @@ typeDefinitions
 			parent: Bank; 
 			account: Account; 
 			branchCode: String; 
-			tellerRef: String) updating, number = 1001;
+			tellerRef: String) updating;
 	)
 	TransferTransaction completeDefinition
 	(
 	attributeDefinitions
-		clearingCode:                  String[8] number = 1, ordinal = 1;
-		transferRef:                   String[20] number = 2, ordinal = 2;
-		valueDate:                     Date number = 3, ordinal = 3;
+		clearingCode:                  String[8];
+		transferRef:                   String[20];
+		valueDate:                     Date;
 	jadeMethodDefinitions
 		create(
 			id: String; 
@@ -444,27 +443,27 @@ typeDefinitions
 			account: Account; 
 			transferRef: String; 
 			clearingCode: String; 
-			valueDate: Date) updating, number = 1001;
+			valueDate: Date) updating;
 	)
 	DataLoader completeDefinition
 	(
 	attributeDefinitions
-		countBase:                     Integer protected, number = 1, ordinal = 1;
-		countCard:                     Integer protected, number = 2, ordinal = 2;
-		countCash:                     Integer protected, number = 3, ordinal = 3;
-		countTransfer:                 Integer protected, number = 4, ordinal = 4;
-		dataDirectory:                 String[301] protected, number = 5, ordinal = 5;
+		countBase:                     Integer protected;
+		countCard:                     Integer protected;
+		countCash:                     Integer protected;
+		countTransfer:                 Integer protected;
+		dataDirectory:                 String[301] protected;
 	referenceDefinitions
-		myRoot:                        Bank  protected, number = 6, ordinal = 6;
+		myRoot:                        Bank  protected;
 	jadeMethodDefinitions
-		closeJournal() protected, number = 1001;
-		convertToTimeStamp(string: String): TimeStamp protected, number = 1002;
-		create() updating, number = 1003;
-		getElapsedTimeString(startClock: Integer): String typeMethod, number = 1004;
+		closeJournal() protected;
+		convertToTimeStamp(string: String): TimeStamp protected;
+		create() updating;
+		getElapsedTimeString(startClock: Integer): String typeMethod;
 		handlException(
 			e: Exception; 
-			currentRecord: String): Integer protected, number = 1005;
-		loadAccount(attributes: JadeRegexResult) protected, number = 1006;
+			currentRecord: String): Integer protected;
+		loadAccount(attributes: JadeRegexResult) protected;
 		loadCardTransaction(
 			attributes: JadeRegexResult; 
 			id: String; 
@@ -475,7 +474,7 @@ typeDefinitions
 			amount: Decimal; 
 			k_symbol: String; 
 			otherBank: String; 
-			otherAccount: String) protected, number = 1007;
+			otherAccount: String) protected;
 		loadCashTransaction(
 			attributes: JadeRegexResult; 
 			id: String; 
@@ -486,20 +485,20 @@ typeDefinitions
 			amount: Decimal; 
 			k_symbol: String; 
 			otherBank: String; 
-			otherAccount: String) protected, number = 1008;
-		loadCustomer(attributes: JadeRegexResult) protected, number = 1009;
+			otherAccount: String) protected;
+		loadCustomer(attributes: JadeRegexResult) protected;
 		loadData(
 			directoryPath: String; 
-			maxRecords: Integer) updating, number = 1010;
-		loadDistrict(attributes: JadeRegexResult) protected, number = 1011;
-		loadLoan(attributes: JadeRegexResult) protected, number = 1017;
-		loadOrder(attributes: JadeRegexResult) protected, number = 1018;
+			maxRecords: Integer) updating;
+		loadDistrict(attributes: JadeRegexResult) protected;
+		loadLoan(attributes: JadeRegexResult) protected;
+		loadOrder(attributes: JadeRegexResult) protected;
 		loadRecords(
 			fileName: String; 
 			loadRecordMethod: JadeMethod; 
 			commitModulus: Integer; 
-			maxRecords: Integer) protected, number = 1012;
-		loadTransaction(attributes: JadeRegexResult) updating, protected, number = 1013;
+			maxRecords: Integer) protected;
+		loadTransaction(attributes: JadeRegexResult) updating, protected;
 		loadTransferTransaction(
 			attributes: JadeRegexResult; 
 			id: String; 
@@ -510,9 +509,9 @@ typeDefinitions
 			amount: Decimal; 
 			k_symbol: String; 
 			otherBank: String; 
-			otherAccount: String) protected, number = 1014;
-		makeBank(name: String) updating, protected, number = 1015;
-		validateDirectoryPath(directoryPath: String): String protected, number = 1016;
+			otherAccount: String) protected;
+		makeBank(name: String) updating, protected;
+		validateDirectoryPath(directoryPath: String): String protected;
 	)
 	Global completeDefinition
 	(
@@ -523,44 +522,16 @@ typeDefinitions
 	GFCModelSchema completeDefinition
 	(
 	)
-	JadePaginationEnvelope completeDefinition
-	(
-	)
-	JadeRestService completeDefinition
-	(
-	)
 	JadeScript completeDefinition
 	(
-	constantDefinitions
-		NumSmoketestEvents:            Integer = 1000 number = 1001;
 	jadeMethodDefinitions
-		closeJournal() number = 1001;
-		generateDescriptionFile() number = 1002;
-		getCurrentJournalOffset(
-			currentJournal: Integer64 output; 
-			currentOffset: Integer64 output) number = 1003;
-		getTransaction() number = 1004;
-		hasLoaded() number = 1022;
-		loadData() number = 1005;
-		loadData2() number = 1024;
-		loadDataWithDialog() number = 1023;
-		purgeCustomers() number = 1006;
-		purgeData() number = 1007;
-		purgeTransactions() number = 1008;
-		removeBank() number = 1009;
-		runSmoketest() number = 1021;
-		setCaptureState() number = 1010;
-		setupSmoketest(param: String) number = 1020;
-		startCapture() number = 1011;
-		startCaptureAtCurrent() number = 1012;
-		startRefineryCC() number = 1018;
-		stopCapture() number = 1013;
-		stopRefineryCC() number = 1019;
-		testJdrActivation() number = 1025;
-		updateAccounts() number = 1014;
-		updateCustomerSlobs() number = 1015;
-		updateCustomers() number = 1016;
-		updateFirstCustomer() number = 1017;
+		loadData();
+		loadDataWithDialog();
+		startRefineryCC();
+		stopRefineryCC();
+		updateAccounts();
+		updateCustomerSlobs();
+		updateCustomers();
 	)
 	WebSession completeDefinition
 	(
@@ -571,7 +542,7 @@ typeDefinitions
 	SFCModelSchema completeDefinition
 	(
 	attributeDefinitions
-		sessionState_userId:           Integer readonly, number = 1, ordinal = 1;
+		sessionState_userId:           Integer readonly;
 	)
 	Collection completeDefinition
 	(
@@ -644,9 +615,9 @@ databaseDefinitions
 	BankModelSchemaDb
 	(
 	databaseFileDefinitions
-		"bank_data" number = 58;
-		"transaction" number = 59;
-		"bank_default" number = 60;
+		"bank_data";
+		"transaction";
+		"bank_default";
 	defaultFileDefinition "bank_default";
 	classMapDefinitions
 		Account in "bank_data";
@@ -1004,7 +975,7 @@ end;
 }
 currentBalance
 {
-currentBalance() : Decimal;
+currentBalance() : Decimal refinery;
 // --------------------------------------------------------------------------------
 // Method:		currentBalance
 //
@@ -1803,111 +1774,18 @@ end;
 	)
 	JadeScript (
 	jadeMethodSources
-closeJournal
-{
-closeJournal();
-
-vars
-	dba : JadeDatabaseAdmin;
-begin
-	create dba transient;
-	dba.closeCurrentJournal();
-	write dba.getCurrentJournalName();
-epilog
-	delete dba;
-end;
-}
-generateDescriptionFile
-{
-generateDescriptionFile();
-vars
-	jaa : JadeAuditAccess;
-begin
-	create jaa transient;
-	beginTransaction;
-	write jaa.descriptionPath;
-	jaa.generateDescription();
-	commitTransaction;
-epilog
-	delete jaa;
-end;
-}
-getCurrentJournalOffset
-{
-getCurrentJournalOffset(currentJournal: Integer64 output; currentOffset : Integer64 output);
-vars
-	unused : Integer64;
-	dba : JadeDatabaseAdmin;
-begin
-	create dba transient;
-	dba.getCurrentJournalOffset(currentJournal, currentOffset, unused, unused, unused);
-epilog
-	delete dba;
-end;
-}
-getTransaction
-{
-getTransaction();
-
-vars
-	bank : Bank;
-	trans : Transaction;
-begin
-	bank := Bank.firstInstance();
-	
-	trans := bank.allTransactions["T00125727"];
-	write trans.amount.getDeclaredPrecision;
-	
-end;
-}
-hasLoaded
-{
-hasLoaded();
-
-begin
-	if Account.instances.size >= NumSmoketestEvents
-	then
-		write "hasLoaded=True";
-	else 
-		write "hasLoaded=False";
-	endif;
-end;
-
-}
 loadData
 {
 loadData();
 constants
-	// TODO - source these from INI settings
-	DataLoadPath : String = "d:\src\jade-data-refinery-tools\resources\banking-demo-data";
+	// Add your path below
+	DataLoadPath : String = "jade-data-refinery-tools\resources\banking-demo-data";
 	MaxRecords : Integer = 1000;
-
 vars
 	dataLoader : DataLoader;
-
 begin
 	create dataLoader transient;
 	dataLoader.loadData(DataLoadPath, MaxRecords);
-
-epilog
-	delete dataLoader; 
-end;
-}
-loadData2
-{
-loadData2();
-constants
-	// TODO - source these from INI settings
-	DataLoadPath : String = "c:\development\git\jade-data-refinery-tools\resources\banking-demo-data";
-	MaxRecords : Integer = 10000;
-
-vars
-	dataLoader : DataLoader;
-
-begin
-	create dataLoader transient;
-	dataLoader.loadData(DataLoadPath, MaxRecords);
-
 epilog
 	delete dataLoader; 
 end;
@@ -1938,159 +1816,12 @@ epilog
 	delete fileFolder; 
 end;
 }
-purgeCustomers
-{
-purgeCustomers();
-
-vars
-	bank : Bank;
-begin
-	bank := Bank.firstInstance;
-	beginTransaction;
-	bank.allCustomers.purge();
-	commitTransaction;
-
-end;
-}
-purgeData
-{
-purgeData();
-
-vars
-
-begin
-	purgeTransactions();
-
-	beginTransaction;
-	delete Bank.firstInstance;
-	commitTransaction;
-end;
-}
-purgeTransactions
-{
-purgeTransactions();
-
-vars
-	bank : Bank;
-	transaction : Transaction;
-	startClock : Integer;
-	count : Integer;
-begin
-	bank := Bank.lastInstance();
-	if bank = null then
-		return;
-	endif;
-	startClock := app.clock();
-	beginTransaction;
-	foreach transaction in bank.allTransactions do
-		count += 1;
-		if count mod 50000 = 0 then
-			commitTransaction;
-			beginTransaction;
-			write count.String & " transactions deleted in " & DataLoader@getElapsedTimeString(startClock);
-		endif;
-		delete transaction;
-	endforeach;
-	commitTransaction;
-
-end;
-}
-removeBank
-{
-removeBank();
-
-vars
-	bank : Bank;
-begin
-	bank := Bank.lastInstance;
-	beginTransaction;
-	delete bank;
-	commitTransaction;
-end;
-}
-runSmoketest
-{
-runSmoketest();
-vars
-	transaction : Transaction;
-begin
-	beginTransaction;
-		foreach transaction in Transaction.instances do
-			transaction.smoketestFlag := true;
-		endforeach;
-	commitTransaction;
-end;
-
-}
-setCaptureState
-{
-setCaptureState();
-
-vars
-
-begin
-	system.setJournalChangeCaptureState(563, 0);
-end;
-}
-setupSmoketest
-{
-setupSmoketest(param : String);
-
-vars
-	dataLoader : DataLoader;
-	dataDir : String;
-begin
-	if(param = "") then
-		write "Error, incorrect parameter passing."& CrLf & "Expecting executeParam=<demo-data-path>" & CrLf &  "Example: D:\src\jade-data-refinery-tools\resources\banking-demo-data";
-		node.userExitCode := 1;
-		terminate;
-	endif;
-	
-	dataDir := param;
-	
-	create dataLoader transient;
-	dataLoader.loadData(dataDir, NumSmoketestEvents);
-epilog 
-delete dataLoader;		
-end;
-
-}
-startCapture
-{
-startCapture();
-
-begin
-	system.startJournalChangeCapture();
-end;
-}
-startCaptureAtCurrent
-{
-startCaptureAtCurrent();
-
-vars
-	currentJournal: Integer64;
-	currentOffset : Integer64;
-begin
-	getCurrentJournalOffset(currentJournal, currentOffset);
-	system.setJournalChangeCaptureState(currentJournal, currentOffset);	
-end;
-}
 startRefineryCC
 {
 startRefineryCC();
 
 begin
 	system.startRefineryChangeCapture();
-end;
-}
-stopCapture
-{
-stopCapture();
-
-vars
-
-begin
-	system.stopJournalChangeCapture();
 end;
 }
 stopRefineryCC
@@ -2100,22 +1831,6 @@ stopRefineryCC();
 begin
 	system.stopRefineryChangeCapture();
 end;
-}
-testJdrActivation
-{
-testJdrActivation();
-
-vars
-	dba : JadeDatabaseAdmin;
-begin
-	create dba transient;
-	
-	dba.__previewJdrActivation("d3e9eb71-a779-4d96-946e-701572460851");
-
-epilog
-	delete dba;
-end;
-
 }
 updateAccounts
 {
@@ -2153,20 +1868,6 @@ begin
 	bank := Bank.firstInstance();
 	beginTransaction;
 	bank.updateCustomers(false);
-	commitTransaction;
-end;
-}
-updateFirstCustomer
-{
-updateFirstCustomer();
-
-vars
-	bank : Bank;
-begin
-	bank := Bank.firstInstance();
-
-	beginTransaction;
-	bank.updateFirstCustomer;
 	commitTransaction;
 end;
 }
